@@ -4,7 +4,7 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <meta name="description" content="Una introducción visual para entender qué es el dinero, cómo evolucionó y cómo funciona el sistema monetario actual."/>
-<title>¿Qué es realmente el dinero?</title>
+<title>¿Qué es realmente el dinero? — De monedas recortadas al dinero digital</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600;6..72,700&display=swap" rel="stylesheet"/>
@@ -89,6 +89,19 @@ a{color:inherit;text-decoration-thickness:1px;text-underline-offset:3px}
 .final{padding:clamp(48px,7vw,80px) clamp(24px,6vw,72px);text-align:center}.final h2{font-family:var(--serif);font-size:clamp(38px,6vw,64px);font-weight:500;line-height:1;letter-spacing:-.032em;max-width:820px;margin:14px auto}.final .lede{margin:20px auto 0;max-width:700px}.final-question{max-width:740px;margin:35px auto 0;background:var(--ink);color:white;padding:28px 30px;border-radius:18px;font-family:var(--serif);font-size:clamp(24px,3.4vw,34px);line-height:1.3}.final-question em{color:#f1a36f;font-style:italic}
 .sources{margin-top:22px;padding:22px 26px}.sources summary{cursor:pointer;font-weight:700;font-size:12px}.sources ol{padding-left:20px;margin-bottom:0}.sources li,.sources p{font-size:10.5px;line-height:1.7;color:var(--muted)}.sources .note{padding:12px 14px;border-radius:11px;background:#f3efe7;margin-top:12px}.sources strong{color:var(--ink)}
 .reveal{opacity:0;transform:translateY(15px);transition:opacity .7s ease,transform .7s ease}.reveal.visible{opacity:1;transform:none}
+
+.coin-stage{margin:36px auto 0;max-width:760px;display:grid;grid-template-columns:230px 1fr;gap:30px;align-items:center;text-align:left}
+.coin-visual{width:210px;height:210px;margin:auto;border-radius:50%;position:relative;display:grid;place-items:center;background:repeating-conic-gradient(from 0deg,#d9af4b 0deg 2deg,#9b7015 2deg 3deg),radial-gradient(circle at 38% 34%,#ffe59b 0 12%,#d6a83a 34%,#9b6a10 72%,#6d4808 100%);box-shadow:inset 0 0 0 9px #c89427,inset 0 0 0 12px rgba(255,255,255,.25),0 16px 35px rgba(83,57,10,.18)}
+.coin-visual:before{content:"";position:absolute;inset:16px;border-radius:50%;background:radial-gradient(circle at 35% 32%,rgba(255,255,255,.4),transparent 25%),linear-gradient(145deg,#d6a038,#b77c13);box-shadow:inset 0 0 0 2px rgba(95,61,4,.26)}
+.coin-visual:after{content:"$";position:relative;z-index:1;font-family:var(--serif);font-size:90px;font-weight:600;color:#72500c;text-shadow:0 1px rgba(255,255,255,.35)}
+.coin-story .eyebrow,.micro .eyebrow{font-size:9px;text-transform:uppercase;letter-spacing:.15em;font-weight:700;color:var(--muted)}
+.coin-story h3{font-family:var(--serif);font-size:30px;line-height:1.12;font-weight:500;margin:7px 0 10px}.coin-story p{font-size:13px;line-height:1.7;color:var(--body);margin:0}.coin-story strong{color:var(--ink)}
+.chain{margin-top:30px;display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:10px;align-items:stretch}.chain-card{padding:18px;border:1px solid var(--line);background:#f8f5ef;border-radius:15px}.chain-card span{font-size:9px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);font-weight:700}.chain-card b{font-family:var(--serif);display:block;font-size:22px;line-height:1.16;margin-top:6px}.chain-card p{font-size:11px;line-height:1.5;color:var(--muted);margin:7px 0 0}.chain-arrow{display:grid;place-items:center;color:#a69e90;font-family:var(--serif);font-size:28px}
+.attack-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:30px}.attack{padding:23px;border-radius:17px;border:1px solid var(--line);background:#faf8f3}.attack.private{background:#f8f2e7}.attack.official{background:#f3ede8}.attack .tag{display:inline-block;font-size:9px;text-transform:uppercase;letter-spacing:.13em;font-weight:700;color:var(--muted);margin-bottom:9px}.attack h3{font-family:var(--serif);font-size:27px;line-height:1.1;font-weight:500;margin:0 0 8px}.attack p{font-size:12px;line-height:1.65;color:var(--body);margin:0}.attack strong{color:var(--ink)}
+.aha{margin-top:29px;padding:24px 26px;background:var(--ink);color:#fff;border-radius:18px;font-family:var(--serif);font-size:clamp(22px,3vw,30px);line-height:1.35}.aha em{color:#f3c86b;font-style:italic}.aha small{display:block;margin-top:9px;color:#aaa397;font-family:var(--sans);font-size:9.5px;line-height:1.55}
+.step-line{margin-top:28px;padding-left:24px;border-left:2px solid var(--line)}.step-line .micro{position:relative;padding:0 0 25px 16px}.step-line .micro:last-child{padding-bottom:0}.step-line .micro:before{content:"";position:absolute;width:9px;height:9px;border-radius:50%;left:-29.5px;top:3px;background:var(--paper);border:2px solid var(--gold)}.micro b{font-family:var(--serif);font-size:22px;font-weight:500;display:block;margin:4px 0 5px}.micro p{font-size:12px;line-height:1.6;color:var(--body);margin:0;max-width:670px}
+@media(max-width:760px){.coin-stage{grid-template-columns:1fr}.coin-visual{width:175px;height:175px}.coin-visual:after{font-size:74px}.chain{grid-template-columns:1fr}.chain-arrow{transform:rotate(90deg);height:18px}.attack-grid{grid-template-columns:1fr}}
+
 @media(max-width:760px){
   .shell{padding:12px 11px 54px}.paper{border-radius:20px}.hero{min-height:85vh;padding:48px 20px}.hero h1{font-size:clamp(39px,11vw,56px)}.hero-lead{font-size:21px}.hero-scroll{display:none}
   .section{padding:35px 20px}.function-grid,.tradeoff-grid,.btc-properties,.today-grid,.mystery-grid,.evolution{grid-template-columns:1fr}.hardness-top{display:block}.hardness-top p{margin-top:9px}.supply-row{grid-template-columns:82px 1fr 82px;gap:9px}.supply-note{font-size:8.5px}.callout{grid-template-columns:44px 1fr}.callout-mark{font-size:45px}.fiat-strip,.compare{grid-template-columns:1fr}.system-arrow,.compare-mid{transform:rotate(90deg);padding:0}.row{grid-template-columns:105px 1fr 70px;gap:8px}.asset{font-size:10px}.value b{font-size:18px}.chart-head{display:block}.chart-head p{text-align:left;margin-top:7px}.bridge{font-size:21px}
@@ -102,78 +115,112 @@ a{color:inherit;text-decoration-thickness:1px;text-underline-offset:3px}
 
 <section class="hero paper">
   <div class="hero-inner">
-    <div class="kicker">Una pregunta escondida a plena vista</div>
-    <h1>Un billete es papel.<br/>Tu saldo bancario son números.<br/><em>¿Por qué compran cosas reales?</em></h1>
-    <p class="hero-lead">Usas dinero casi todos los días, pero su valor no está en el material del que está hecho. Aceptamos trabajar, vender y pagar deudas con algo que, por sí solo, no alimenta, no abriga y no construye nada. <strong>Entonces, ¿qué es exactamente el dinero y por qué funciona?</strong></p>
-    <div class="mystery-grid">
-      <div class="mystery"><span>En tu bolsillo</span><b>Un objeto que llamamos dinero</b></div>
-      <div class="mystery"><span>En tu banco</span><b>Un registro que también llamamos dinero</b></div>
-      <div class="mystery question"><span>La pregunta</span><b>¿Qué tienen en común?</b></div>
+    <div class="kicker">La historia del dinero está escondida en un detalle cotidiano</div>
+    <h1>¿Por qué algunas monedas<br/>tienen <em>ranuras en el borde?</em></h1>
+    <p class="hero-lead">No están ahí por decoración. Durante siglos, una forma de robar valor era <strong>recortar pequeñas cantidades de oro o plata del borde de una moneda</strong> y gastarla como si siguiera completa.<a class="source-ref" href="#src15">15</a> Esa pequeña trampa revela algo enorme: <strong>la historia del dinero es una carrera por hacer el valor más fácil de intercambiar… y más difícil de manipular.</strong></p>
+    <div class="coin-stage">
+      <div class="coin-visual" aria-hidden="true"></div>
+      <div class="coin-story">
+        <div class="eyebrow">Una pista que todavía llevas en el bolsillo</div>
+        <h3>Cada etapa resolvió un problema. Y creó uno nuevo.</h3>
+        <p>Del trueque pasamos al metal; del metal a la moneda; de la moneda al papel; del papel a los bancos; y de ahí al dinero digital que ves en una pantalla. <strong>La pregunta que une toda la historia es la misma: ¿por qué confiamos en que esto conservará valor suficiente para que alguien lo acepte después?</strong></p>
+      </div>
     </div>
-    <div class="hero-note"><span>↓</span><span><b>Sigue la pista</b>: intercambio → metales → monedas → papel → bancos → dinero fiat → Bitcoin</span></div>
+    <div class="hero-note"><span>↓</span><span><b>Sigue el problema, no las fechas</b>: cada solución nos empuja a la siguiente</span></div>
   </div>
-  <div class="hero-scroll">Empieza por el problema ↓</div>
+  <div class="hero-scroll">Empieza con un intercambio ↓</div>
 </section>
 
 <div class="story">
 <section class="section paper reveal">
-  <div class="chap"><i>1</i> El problema que había que resolver</div>
-  <h2>Antes del dinero, intercambiar requería demasiadas coincidencias.</h2>
-  <p class="lede">Imagina que produces pan y necesitas zapatos. Puedes buscar a un zapatero, pero el intercambio solo funciona si esa persona también quiere tu pan, en ese momento, y ambos coinciden en cuánto vale cada cosa. El trueque hace evidente el problema: <strong>querer comerciar no garantiza poder hacerlo.</strong><a class="source-ref" href="#src1">1</a></p>
-  <div class="copy">La salida es introducir un tercer elemento. En lugar de cambiar pan directamente por zapatos, vendes el pan a cambio de algo que no necesitas consumir. Lo aceptas porque esperas que otra persona también lo acepte después. Ese objeto intermedio es lo que empieza a funcionar como <strong>medio de intercambio</strong>.</div>
-  <div class="function-grid">
-    <div class="function"><div class="icon">↔️</div><b>Intercambiar</b><p>Ya no necesitas encontrar a alguien que quiera exactamente lo que tú ofreces.</p></div>
-    <div class="function"><div class="icon">📏</div><b>Comparar</b><p>Una referencia común permite decir cuánto cuesta el pan, los zapatos o una hora de trabajo.</p></div>
-    <div class="function"><div class="icon">⏳</div><b>Posponer</b><p>Si conserva suficiente poder de compra, puedes recibirlo hoy y gastarlo más adelante.</p></div>
+  <div class="chap"><i>1</i> Primero: ¿para qué necesitamos dinero?</div>
+  <h2>Si tú tienes pan y yo tengo zapatos, comerciar parece fácil. Hasta que ninguno quiere lo que ofrece el otro.</h2>
+  <p class="lede">Ese es el problema del intercambio directo: para cerrar el trato necesitamos coincidir al mismo tiempo en <strong>qué queremos y cuánto vale cada cosa</strong>. El dinero aparece como una salida: usar un tercer bien que ambos aceptamos, aunque ninguno quiera consumirlo en ese momento.<a class="source-ref" href="#src1">1</a></p>
+  <div class="chain">
+    <div class="chain-card"><span>Sin dinero</span><b>Pan ↔ zapatos</b><p>El trato depende de encontrar exactamente a la contraparte correcta.</p></div>
+    <div class="chain-arrow">→</div>
+    <div class="chain-card"><span>El truco</span><b>Pan → algo aceptado</b><p>Recibes algo porque sabes que podrás volver a intercambiarlo.</p></div>
+    <div class="chain-arrow">→</div>
+    <div class="chain-card"><span>Resultado</span><b>Ese “algo” empieza a ser dinero</b><p>Sirve como puente entre intercambios que ocurren con personas y momentos distintos.</p></div>
   </div>
-  <div class="precision"><strong>La idea importante no es que toda sociedad haya seguido una única secuencia histórica.</strong> El trueque sirve aquí para mostrar el problema económico que el dinero resuelve: coordinar intercambios usando una referencia común.</div>
-  <div class="pivot">Eso deja una pregunta inevitable: <em>si vas a aceptar algo que no necesitas, confiando en que otro lo aceptará después, ¿qué clase de objeto elegirías?</em></div>
+  <div class="pivot">Pero surge enseguida otra pregunta: <em>¿qué objeto aceptarías hoy sabiendo que quizá no lo usarás hasta mañana?</em></div>
 </section>
 
 <section class="section paper reveal">
-  <div class="chap"><i>2</i> Qué cosas pueden convertirse en dinero</div>
-  <h2>Un buen dinero tiene que sobrevivir al siguiente intercambio.</h2>
-  <p class="lede">A lo largo de la historia se utilizaron distintos bienes como dinero. Cuanto más comercio había, más valiosos resultaban ciertos atributos: que el objeto <strong>durara, pudiera dividirse, fuera fácil de transportar y reconocer, y no pudiera producirse en cantidades enormes de un día para otro.</strong><a class="source-ref" href="#src1">1</a></p>
-  <div class="evolution">
-    <div class="evo"><div class="evo-icon">🥖</div><b>Intercambio directo</b><p>Entregas un bien y recibes otro. Funciona, pero exige encontrar la contraparte adecuada.</p></div>
-    <div class="evo"><div class="evo-icon">🐚</div><b>Bien de referencia</b><p>Algunos bienes empiezan a recibirse no para consumirlos, sino porque otros también los reconocen.</p></div>
-    <div class="evo"><div class="evo-icon">⚖️</div><b>Metal por peso</b><p>Oro y plata concentran valor, duran mucho y pueden fraccionarse.</p></div>
-    <div class="evo"><div class="evo-icon">🪙</div><b>Monedas</b><p>El sello y la estandarización reducen la necesidad de pesar y comprobar cada pieza en cada pago.</p></div>
-    <div class="evo"><div class="evo-icon">📜</div><b>Papel y registros</b><p>En vez de mover siempre el metal, pueden circular derechos o promesas sobre valor custodiado.</p></div>
-    <div class="evo"><div class="evo-icon">📱</div><b>Dinero actual</b><p>Hoy gran parte de lo que usamos para pagar existe como depósitos y registros electrónicos.</p></div>
+  <div class="chap"><i>2</i> No cualquier cosa sirve</div>
+  <h2>El mejor “puente” era algo que no se pudriera, pudiera dividirse y fuera difícil de conseguir.</h2>
+  <p class="lede">Distintas sociedades usaron bienes muy diferentes como dinero. Con más comercio, algunas propiedades se volvieron especialmente útiles: <strong>durabilidad, portabilidad, divisibilidad, facilidad de reconocimiento y una oferta relativamente difícil de expandir.</strong><a class="source-ref" href="#src1">1</a></p>
+  <div class="step-line">
+    <div class="micro"><div class="eyebrow">Paso 1</div><b>Primero importaba el objeto</b><p>Conchas, ganado, sal y otros bienes han servido como referencias de intercambio en distintos lugares y épocas. El valor estaba ligado al propio bien.</p></div>
+    <div class="micro"><div class="eyebrow">Paso 2</div><b>Los metales resolvieron varios problemas a la vez</b><p>Oro y plata podían almacenarse durante mucho tiempo, dividirse, fundirse y concentrar bastante valor en poco espacio.</p></div>
+    <div class="micro"><div class="eyebrow">Nuevo problema</div><b>Cada pago exigía comprobar peso y pureza</b><p>Un trozo de metal no te dice por sí solo cuánto metal precioso contiene. Había que pesarlo, examinarlo o confiar en quien lo entregaba.</p></div>
   </div>
-  <div class="copy">Los metales preciosos ganaron terreno porque combinaban varias propiedades útiles a la vez: durabilidad, divisibilidad, portabilidad relativa y oferta limitada. La acuñación añadió otra ventaja: una pieza estandarizada y sellada era más sencilla de reconocer que una cantidad de metal que había que pesar y verificar en cada operación.<a class="source-ref" href="#src2">2</a></div>
-  <div class="pivot">El metal funcionaba. Pero tenía un defecto muy físico: <em>cuanto más valor querías mover, más incómodo era cargarlo y protegerlo.</em></div>
+  <div class="pivot">La solución fue brillante: <em>poner una garantía directamente sobre el metal.</em></div>
 </section>
 
 <section class="section paper gold-section reveal">
-  <div class="chap"><i>3</i> Cuando dejamos de mover el metal</div>
-  <h2>El siguiente salto fue mover la promesa, no el oro.</h2>
-  <p class="lede">En una de las rutas europeas hacia el billete moderno, las personas dejaron monedas y metales bajo custodia y recibieron comprobantes. En Inglaterra, los orfebres del siglo XVII entregaban recibos por depósitos; con el tiempo, esos papeles podían circular directamente entre personas. El Bank of England comenzó a emitir sus propios billetes a finales de ese siglo.<a class="source-ref" href="#src3">3</a></p>
+  <div class="chap"><i>3</i> La moneda fue una tecnología de confianza</div>
+  <h2>Un sello convirtió un pedazo de metal en una pieza reconocible.</h2>
+  <p class="lede">Al acuñar una moneda, una autoridad podía estandarizar su peso y composición y marcarla para que fuera más fácil reconocerla. Ya no era necesario empezar desde cero en cada pago: <strong>el sello decía qué debía contener la pieza.</strong></p>
   <div class="tradeoff-grid">
-    <div class="tradeoff"><div class="label">Lo que cambió</div><b>Ya no movías el activo</b><p>Podías pagar transfiriendo un papel o un registro que representaba un derecho sobre algo guardado.</p></div>
-    <div class="tradeoff"><div class="label">Lo que apareció</div><b>Un intermediario</b><p>Ahora importaba no solo el metal, sino también confiar en quien lo custodiaba y reconocía la promesa.</p></div>
+    <div class="tradeoff"><div class="label">Antes</div><b>“Pésalo y compruébalo”</b><p>El valor dependía de verificar el metal en cada operación.</p></div>
+    <div class="tradeoff"><div class="label">Con moneda</div><b>“Reconoce la pieza”</b><p>La estandarización reducía el costo de verificar cada intercambio.</p></div>
   </div>
-  <div class="copy">Durante mucho tiempo coexistieron monedas metálicas, billetes convertibles y depósitos bancarios. En el siglo XX, Bretton Woods llevó esa lógica al sistema monetario internacional: después de la Segunda Guerra Mundial, muchas monedas se vincularon al dólar y Estados Unidos mantenía la conversión oficial del dólar en oro para autoridades monetarias extranjeras a US$35 por onza.<a class="source-ref" href="#src4">4</a></div>
-  <div class="story-question">Hasta aquí el soporte cambió —metal, moneda, papel, registro— pero quedaba una pregunta sencilla: <em>¿puedo convertir esta promesa en el activo que dice representar?</em></div>
+  <div class="copy">Pero esa comodidad introdujo algo nuevo: <strong>confianza en la integridad de la moneda.</strong> Y en cuanto una moneda podía circular por su denominación —no solo por pesarla de nuevo— aparecieron formas de quedarse con parte de su metal sin cambiar el número grabado en ella.</div>
+  <div class="pivot">Aquí la historia se pone interesante: <em>una moneda podía decir lo mismo… y contener menos.</em></div>
+</section>
+
+<section class="section paper reveal">
+  <div class="chap"><i>4</i> La primera gran lección sobre devaluación</div>
+  <h2>Había dos maneras de quitarle valor a una moneda sin cambiar el número que llevaba grabado.</h2>
+  <div class="attack-grid">
+    <div class="attack private">
+      <div class="tag">Desde fuera del sistema</div>
+      <h3>Recortar la moneda</h3>
+      <p>Cuando una moneda era de oro o plata y tenía el borde liso, alguien podía <strong>raspar o cortar una pequeña cantidad</strong>, guardar el metal y tratar de gastar la moneda por su valor completo. Los bordes mecanizados o con inscripciones hicieron mucho más visible esa manipulación.<a class="source-ref" href="#src15">15</a></p>
+    </div>
+    <div class="attack official">
+      <div class="tag">Desde quien acuñaba</div>
+      <h3>Reducir el metal precioso</h3>
+      <p>Otra cosa distinta era el <strong>envilecimiento o debasement</strong>: acuñar nuevas monedas con menos oro o plata y más metal barato manteniendo su denominación. Durante el Gran Envilecimiento inglés de 1544–1551, por ejemplo, se redujo fuertemente el contenido de plata y se utilizó cobre.<a class="source-ref" href="#src16">16</a></p>
+    </div>
+  </div>
+  <div class="aha">Esta es la idea que importa: <em>el número de unidades podía seguir siendo el mismo mientras cambiaba lo que había detrás de cada unidad.</em><small>Recortar una moneda y reducir oficialmente su contenido metálico no son lo mismo; ambos episodios muestran por qué peso, pureza y confianza en el emisor importaban cuando el dinero era metálico.</small></div>
+  <div class="copy">El ejemplo de Enrique VIII es especialmente visual: The Royal Mint explica que parte de su moneda de plata fue degradada con cobre; al desgastarse la fina superficie plateada, el cobre quedaba visible en la nariz del retrato del rey, origen del apodo <strong>“Old Coppernose”</strong>.<a class="source-ref" href="#src16">16</a></div>
+  <div class="pivot">Si el sello ya podía representar un valor sin que tuvieras que analizar el metal cada vez, el siguiente salto era casi inevitable: <em>¿y si dejamos de mover el metal por completo?</em></div>
+</section>
+
+<section class="section paper gold-section reveal">
+  <div class="chap"><i>5</i> Del metal a la promesa</div>
+  <h2>Guardamos el oro… y empezamos a mover el recibo.</h2>
+  <p class="lede">Transportar metal era incómodo y arriesgado. En una de las rutas europeas hacia el billete moderno, los orfebres ingleses almacenaban monedas de oro y entregaban recibos a sus clientes. Con el tiempo, esos recibos empezaron a circular porque quien los recibía sabía que podía reclamar el valor depositado.<a class="source-ref" href="#src3">3</a></p>
+  <div class="chain">
+    <div class="chain-card"><span>Metal</span><b>Valor físico</b><p>Para pagar, el activo cambia de manos.</p></div>
+    <div class="chain-arrow">→</div>
+    <div class="chain-card"><span>Recibo</span><b>Derecho sobre el metal</b><p>El papel puede moverse mientras el metal permanece guardado.</p></div>
+    <div class="chain-arrow">→</div>
+    <div class="chain-card"><span>Nueva condición</span><b>Confiar en el custodio</b><p>Ahora importa que quien emitió la promesa pueda cumplirla.</p></div>
+  </div>
+  <div class="copy">El Bank of England, fundado en 1694, emitió notas como recibos de depósitos; esas “promesas de pagar” evolucionaron hacia los billetes modernos.<a class="source-ref" href="#src17">17</a> Durante siglos convivieron metal, billetes convertibles y depósitos bancarios.</div>
+  <div class="story-question">El dinero acababa de cambiar de naturaleza: ya no siempre movías el activo; muchas veces movías <em>una promesa sobre el activo.</em></div>
 </section>
 
 <section class="section paper fiat-section reveal">
-  <div class="chap"><i>4</i> El salto al dinero fiat</div>
-  <h2>Después conservamos la moneda… pero dejamos atrás la promesa de convertirla en oro.</h2>
-  <p class="lede">El 15 de agosto de 1971, Estados Unidos suspendió la convertibilidad del dólar en oro para autoridades monetarias extranjeras. El sistema de Bretton Woods terminó de deshacerse en los años siguientes. Desde entonces, las principales monedas funcionan sin una tasa fija de conversión a una mercancía como el oro.<a class="source-ref" href="#src4">4</a></p>
+  <div class="chap"><i>6</i> Cuando la promesa deja de ser oro</div>
+  <h2>Durante siglos el papel conservó una pregunta detrás: “¿puedo convertirlo en algo?” En el sistema actual, la respuesta cambió.</h2>
+  <p class="lede">El mundo no pasó del oro al dinero fiat en una sola noche. Pero un punto de quiebre del sistema de posguerra llegó el 15 de agosto de 1971, cuando Estados Unidos suspendió la convertibilidad oficial del dólar en oro para autoridades monetarias extranjeras. Bretton Woods terminó de deshacerse en los años siguientes.<a class="source-ref" href="#src4">4</a></p>
   <div class="fiat-strip">
     <div class="system-card"><span>Dinero convertible</span><b>“Este dinero puede canjearse”</b><p>Su emisor mantiene una regla que vincula la unidad monetaria con un activo de referencia.</p></div>
     <div class="system-arrow">→</div>
     <div class="system-card"><span>Dinero fiat</span><b>“Esta unidad es el dinero”</b><p>No promete una cantidad fija de oro. Es la unidad en la que se fijan precios, salarios, contratos, impuestos y pagos.</p></div>
   </div>
-  <div class="copy">Fiat no significa “dinero sin nada detrás”. Significa que su valor no depende de redimir cada unidad por una cantidad fija de una mercancía. El sistema descansa en una red de instituciones, leyes, bancos, medios de pago y, sobre todo, en la expectativa de que esa misma unidad seguirá siendo aceptada en los intercambios.<a class="source-ref" href="#src5">5</a></div>
+  <div class="copy"><strong>Fiat</strong> significa que la unidad monetaria no promete una cantidad fija de oro u otra mercancía. Su funcionamiento depende de un sistema de leyes, bancos, pagos, política monetaria y confianza: cobras, pagas impuestos, firmas contratos y fijamos precios usando esa misma unidad.<a class="source-ref" href="#src5">5</a></div>
   <div class="precision"><strong>Y aquí conviene evitar un atajo:</strong> abandonar la convertibilidad en oro no implica automáticamente inflación descontrolada. La estabilidad de una moneda fiat depende de política monetaria, crédito, producción, demanda, regulación y confianza institucional, entre otros factores.</div>
   <div class="pivot">Pero si el dinero ya no sale de una mina ni representa una cantidad fija de metal, aparece la pregunta más interesante de todas: <em>¿de dónde sale el dinero que hoy ves en tu cuenta?</em></div>
 </section>
 
 <section class="section paper reveal">
-  <div class="chap"><i>5</i> Cómo funciona el sistema actual</div>
+  <div class="chap"><i>7</i> El dinero que realmente usas hoy</div>
   <h2>La mayor sorpresa: el dinero moderno no es principalmente billetes.</h2>
   <p class="lede">En las economías modernas, gran parte del dinero que utilizan hogares y empresas toma la forma de <strong>depósitos bancarios</strong>: los números que ves en una cuenta y puedes transferir con una tarjeta o una aplicación. El efectivo es solo una de las formas del dinero actual.<a class="source-ref" href="#src12">12</a><a class="source-ref" href="#src14">14</a></p>
   <div class="today-grid">
@@ -182,12 +229,12 @@ a{color:inherit;text-decoration-thickness:1px;text-underline-offset:3px}
     <div class="today-card"><div class="eyebrow">Tú</div><b>Usas ambos como una misma unidad</b><p>Esperas que un peso, dólar o euro depositado en tu banco pueda convertirse y pagarse a la par con la moneda emitida por el banco central.</p></div>
   </div>
   <div class="copy">Por eso la imagen de una “impresora” explica solo una parte del sistema. Los bancos comerciales crean dinero cuando expanden crédito y crean depósitos; cuando esos préstamos se pagan, ese dinero bancario puede desaparecer. Los bancos tampoco pueden prestar sin límite: rentabilidad, regulación, capital, liquidez, riesgo, demanda de crédito y la política del banco central restringen cuánto crédito pueden crear.<a class="source-ref" href="#src13">13</a></div>
-  <div class="story-question">Ahora la palabra <em>fiat</em> deja de ser abstracta. Describe un sistema en el que el dinero puede expandirse o contraerse mediante decisiones institucionales y crédito, en lugar de estar atado a la cantidad disponible de una mercancía.</div>
+  <div class="story-question">Aquí se cierra el círculo: antes preguntábamos cuánta plata había dentro de una moneda. Hoy la pregunta es distinta: <em>¿qué reglas determinan cuántas unidades monetarias y cuánto crédito pueden existir?</em></div>
   <div class="pivot">Y eso abre la siguiente pregunta: <em>si distintas formas de dinero pueden aumentar su oferta de maneras muy diferentes, ¿por qué debería importarte?</em></div>
 </section>
 
 <section class="section paper reveal">
-  <div class="chap"><i>6</i> Por qué importa la oferta</div>
+  <div class="chap"><i>8</i> La vieja pregunta regresa</div>
   <h2>Dos cosas pueden servir para pagar y, aun así, comportarse de forma muy distinta cuando aumenta la demanda.</h2>
   <p class="lede">La cantidad disponible de un bien no es el único factor que determina su precio o su poder de compra. Pero sí importa <strong>qué tan fácil es aumentar su oferta</strong>. Si producir nuevas unidades es rápido, la oferta puede reaccionar con fuerza. Si es lento o está limitada por reglas conocidas, la respuesta es distinta.</p>
   <div class="hardness">
@@ -197,7 +244,7 @@ a{color:inherit;text-decoration-thickness:1px;text-underline-offset:3px}
     <div class="supply-row"><div class="supply-name">Bitcoin</div><div class="supply-track"><div class="supply-fill" style="width:7%;background:#ea7a30"></div></div><div class="supply-note">Su calendario de emisión no aumenta con la demanda</div></div>
     <div class="hardness-legend">Ilustración conceptual; los anchos no representan porcentajes.</div>
   </div>
-  <div class="copy">El oro es un buen ejemplo de oferta difícil de expandir rápidamente. El World Gold Council estima unas 222,600 toneladas de oro sobre la superficie al cierre de Q2 2026, valoradas en aproximadamente US$29T.<a class="source-ref" href="#src6">6</a> Extraer más requiere descubrir depósitos, invertir capital y desarrollar proyectos mineros.</div>
+  <div class="copy">La pregunta por la oferta no nació con Bitcoin. Ya estaba presente cuando comerciantes comprobaban el peso de una moneda o cuando una ceca reducía su contenido metálico. <strong>No son mecanismos equivalentes</strong>, pero todos obligan a preguntar quién puede aumentar la cantidad de unidades y a qué costo. El oro es un buen ejemplo de oferta difícil de expandir rápidamente. El World Gold Council estima unas 222,600 toneladas de oro sobre la superficie al cierre de Q2 2026, valoradas en aproximadamente US$29T.<a class="source-ref" href="#src6">6</a> Extraer más requiere descubrir depósitos, invertir capital y desarrollar proyectos mineros.</div>
   <div class="precision"><strong>Escasez no significa precio estable ni garantiza que algo sea una buena inversión.</strong> Aquí solo estamos aislando una propiedad del dinero y de los activos monetarios: cómo responde su oferta cuando cambia la demanda.</div>
 </section>
 
@@ -205,7 +252,7 @@ a{color:inherit;text-decoration-thickness:1px;text-underline-offset:3px}
 
 
 <section class="section paper dark-section reveal">
-  <div class="chap"><i>7</i> Dónde entra Bitcoin</div>
+  <div class="chap"><i>9</i> Una nueva respuesta digital</div>
   <h2>Bitcoin hace una pregunta nueva: ¿puede la escasez existir sin un objeto físico?</h2>
   <p class="lede">Bitcoin no está respaldado por oro y tampoco lo emite un banco central. Su red utiliza un conjunto de reglas compartidas para registrar propiedad y emitir nuevas unidades a un ritmo conocido de antemano. La emisión se reduce aproximadamente a la mitad cada 210,000 bloques y converge hacia un máximo cercano a 21 millones de bitcoin.<a class="source-ref" href="#src10">10</a></p>
   <div class="btc-properties">
@@ -220,7 +267,7 @@ a{color:inherit;text-decoration-thickness:1px;text-underline-offset:3px}
 <div class="bridge reveal">Ahora sí tiene sentido mirar el tamaño. No como una predicción, sino para entender la escala actual de oro y Bitcoin frente a otros mercados.</div>
 
 <section class="section paper scale-section reveal">
-  <div class="chap"><i>8</i> Mira la escala, no una predicción</div>
+  <div class="chap"><i>10</i> Mira la escala, no una predicción</div>
   <h2>Bitcoin sigue siendo pequeño frente al oro. Eso es un dato; lo que ocurra después no lo es.</h2>
   <p class="lede">La comparación de abajo suma cinco grandes categorías solo para visualizar órdenes de magnitud. El porcentaje indica la participación de cada una <strong>dentro de esta muestra</strong>; no representa “toda la riqueza del mundo” ni un balance contable global.</p>
   <div class="chart-head"><h3>Muestra comparativa ≈ US$725.8T</h3><p>Las fuentes usan fechas y metodologías distintas. La suma es una herramienta visual, no una medida de riqueza neta mundial.</p></div>
@@ -229,14 +276,14 @@ a{color:inherit;text-decoration-thickness:1px;text-underline-offset:3px}
     <div class="row"><div class="asset">📈 Acciones<small>WFE · cierre 2025</small></div><div class="track"><div class="fill" style="width:20.93%;background:#4f6f96"></div></div><div class="value"><b>20.93%</b><small>US$151.94T</small></div></div>
     <div class="row"><div class="asset">📜 Deuda<small>BIS · cierre 2024</small></div><div class="track"><div class="fill" style="width:20.67%;background:#a86d42"></div></div><div class="value"><b>20.67%</b><small>&gt;US$150T</small></div></div>
     <div class="row gold-row"><div class="asset">🪙 Oro<small>WGC · Q2 2026</small></div><div class="track"><div class="fill" style="width:4.00%;background:var(--gold)"></div></div><div class="value"><b style="color:var(--gold)">4.00%</b><small>≈US$29T</small></div></div>
-    <div class="row btc-row"><div class="asset">₿ Bitcoin<small>CoinGecko · 12 sep 2026</small></div><div class="track btc-track"><div class="fill" style="width:.214%;background:var(--btc)"></div><div class="btc-dot" style="left:max(.214%,3px)"></div></div><div class="value"><b style="color:var(--btc)">0.21%</b><small>≈US$1.55T</small></div></div>
+    <div class="row btc-row"><div class="asset">₿ Bitcoin<small>CoinGecko · 9 sep 2026</small></div><div class="track btc-track"><div class="fill" style="width:.214%;background:var(--btc)"></div><div class="btc-dot" style="left:max(.214%,3px)"></div></div><div class="value"><b style="color:var(--btc)">0.21%</b><small>≈US$1.58T</small></div></div>
   </div>
   <div class="compare">
     <div class="compare-card gold"><span>Oro</span><strong>≈US$29T</strong><p>El World Gold Council estima el valor de todo el oro existente sobre la superficie en alrededor de US$29T al cierre de Q2 2026.<a class="source-ref" href="#src6">6</a></p></div>
-    <div class="compare-mid">≈18.7×</div>
-    <div class="compare-card btc"><span>Bitcoin</span><strong>≈US$1.55T</strong><p>La capitalización de Bitcoin ronda US$1.55T al 12 de septiembre de 2026.<a class="source-ref" href="#src11">11</a> El cociente muestra diferencia de escala, no probabilidad de convergencia.</p></div>
+    <div class="compare-mid">≈18.4×</div>
+    <div class="compare-card btc"><span>Bitcoin</span><strong>≈US$1.58T</strong><p>La capitalización de Bitcoin ronda US$1.58T al 9 de septiembre de 2026.<a class="source-ref" href="#src11">11</a> El cociente muestra diferencia de escala, no probabilidad de convergencia.</p></div>
   </div>
-  <div class="precision"><strong>Un escenario mental, no un objetivo de precio:</strong> si algún día Bitcoin tuviera la misma capitalización que hoy tiene el oro, su valor de mercado tendría que ser aproximadamente 18.7 veces mayor que el actual, manteniendo constantes las demás cifras. Esa aritmética no dice que vaya a ocurrir, cuándo ocurriría ni qué pasaría con el precio del oro en el proceso.</div>
+  <div class="precision"><strong>Un escenario mental, no un objetivo de precio:</strong> si algún día Bitcoin tuviera la misma capitalización que hoy tiene el oro, su valor de mercado tendría que ser aproximadamente 18.4 veces mayor que el actual, manteniendo constantes las demás cifras. Esa aritmética no dice que vaya a ocurrir, cuándo ocurriría ni qué pasaría con el precio del oro en el proceso.</div>
 </section>
 
 <section class="final paper reveal">
@@ -264,6 +311,10 @@ a{color:inherit;text-decoration-thickness:1px;text-underline-offset:3px}
     <li id="src12"><a href="https://www.bankofengland.co.uk/quarterly-bulletin/2014/q1/money-in-the-modern-economy-an-introduction" target="_blank" rel="noopener">Bank of England — Money in the modern economy: an introduction</a>. Tipos de dinero moderno, depósitos bancarios y dinero del banco central.</li>
     <li id="src13"><a href="https://www.bankofengland.co.uk/quarterly-bulletin/2014/q1/money-creation-in-the-modern-economy" target="_blank" rel="noopener">Bank of England — Money creation in the modern economy</a>. Creación de depósitos mediante crédito y límites a la creación de dinero bancario.</li>
     <li id="src14"><a href="https://www.ecb.europa.eu/ecb-and-you/explainers/tell-me-more/html/what_is_money.en.html" target="_blank" rel="noopener">Banco Central Europeo — What is money?</a>. Dinero de banco central, dinero bancario y creación de depósitos en el sistema monetario moderno.</li>
+  
+    <li id="src15"><a href="https://886.royalmint.com/blogs/the-journal/the-milled-edge-motif" target="_blank" rel="noopener">The Royal Mint — The Milled Edge Motif</a>. El recorte de monedas de oro/plata y el uso de bordes mecanizados o inscritos como protección frente al clipping.</li>
+    <li id="src16"><a href="https://production.royalmint.com/collect/coin-history-and-tradition/debasement-and-tudor-coinage/" target="_blank" rel="noopener">The Royal Mint — The Great Debasement and Tudor Coins</a>. Reducción del contenido de plata, uso de cobre y pérdida de confianza durante el Gran Envilecimiento de 1544–1551.</li>
+    <li id="src17"><a href="https://www.bankofengland.co.uk/museum/online-collections/blog/our-earliest-bank-of-england-note" target="_blank" rel="noopener">Bank of England — Our earliest Bank of England note</a>. Recibos de orfebres, depósitos y evolución de las primeras notas del Banco de Inglaterra.</li>
   </ol>
   <div class="note"><strong>Metodología del gráfico:</strong> se suman cinco tamaños de mercado para crear una referencia visual. Bienes raíces, acciones, deuda, oro y Bitcoin no forman un balance homogéneo y las cifras provienen de fechas distintas. Por eso los porcentajes solo significan “participación dentro de esta selección”. No deben interpretarse como porcentaje de la riqueza global, patrimonio neto mundial ni cartera óptima. La comparación oro/Bitcoin es aritmética de capitalización y no constituye una previsión de precio.</div>
 </details>
