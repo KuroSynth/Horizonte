@@ -1,783 +1,280 @@
 <!DOCTYPE html>
-<html lang="es-MX">
+<html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta name="description" content="Proyección de retiro con bitcoin y otros activos.">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="default">
-<meta name="theme-color" content="#f6f5f1">
-<title>Horizonte — Calculadora de retiro</title>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="Una introducción visual para entender qué es el dinero, cómo evolucionó y cómo funciona el sistema monetario actual."/>
+<title>¿Qué es realmente el dinero?</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600;6..72,700&display=swap" rel="stylesheet"/>
 <style>
-:root{color-scheme:light;--bg:#f6f5f1;--surface:#ffffff;--line:#e4ded5;--text:#25221e;--text-dim:#696158;--accent:#f7931a;--warn:#b23432;--sans:Inter,"Avenir Next",Avenir,"Segoe UI",sans-serif;--serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;--mono:var(--sans)}
-*{box-sizing:border-box;margin:0;padding:0}
-html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
-body{min-height:100vh;background:radial-gradient(ellipse at 100% 0%,#fff3e2 0,transparent 45%),var(--bg);color:var(--text);font-family:var(--sans);line-height:1.5;padding:max(52px,env(safe-area-inset-top)) max(24px,env(safe-area-inset-right)) max(36px,env(safe-area-inset-bottom)) max(24px,env(safe-area-inset-left));-webkit-font-smoothing:antialiased}
-.page{max-width:580px;margin:auto}
-header{padding-bottom:25px;border-bottom:1px solid var(--line)}
-.eyebrow{display:flex;align-items:center;gap:10px;font-size:11px;font-weight:600;letter-spacing:.19em;text-transform:uppercase;color:var(--accent);margin-bottom:22px}
-.brand-mark{display:grid;place-items:center;width:30px;height:30px;border:1px solid #f7931a;border-radius:50%;font-size:18px;letter-spacing:0}
-h1{font-family:var(--sans);font-size:clamp(46px,10vw,70px);font-weight:750;letter-spacing:-.045em;line-height:1.05}
-.subtitle{font-size:14px;color:var(--text-dim);margin-top:14px;max-width:380px}
-.ticker{font-size:12px;line-height:1.6;color:var(--text-dim);margin:18px 0 30px;font-variant-numeric:tabular-nums}
-.ticker b{color:var(--text);font-weight:600}
-.input-panel{border:1px solid var(--line);border-radius:20px;background:#ffffff;padding:6px 24px;box-shadow:0 12px 30px #00000012}
-.field{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:18px 0;border-bottom:1px solid var(--line)}
-.field:last-child{border-bottom:0}
-.field label{font-size:14px;font-weight:500;flex:1;min-width:0}
-.field .in{display:flex;align-items:center;gap:8px;flex:1.15;min-width:0;border-radius:8px;padding:3px 6px;transition:background .18s,box-shadow .18s}
-.field .in:focus-within{background:#fff5e8;box-shadow:0 0 0 1px var(--accent)}
-.field input{font:500 22px/1.4 var(--sans);font-variant-numeric:tabular-nums;color:var(--text);width:100%;min-width:0;text-align:right;background:transparent;border:0;min-height:40px;border-radius:4px}
-.field input::placeholder{color:#77716a;opacity:1}
-.field .unit{font-size:11px;font-weight:500;color:var(--text-dim);flex-shrink:0}
-.field-hint{font-size:12px;color:var(--text-dim);padding:8px 0 12px;line-height:1.6}
-.field-hint:empty{display:none}
-.input-panel:has(.field-hint:not(:empty)) .field:nth-child(2){border-bottom:0}
-input[type=number]{appearance:textfield;-moz-appearance:textfield}
-input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}
-.result{position:relative;text-align:center;border:1px solid #f7931a;border-radius:24px;margin:24px 0 30px;padding:30px 16px 28px;background:linear-gradient(135deg,#f7931a,#b85e00);box-shadow:0 16px 40px #00000018}
-.result-label{color:#fff5e8;font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:500;margin-bottom:26px}
-.hero-num{display:flex;align-items:baseline;justify-content:center;gap:20px;flex-wrap:wrap}
-.hero-num .grp{display:flex;align-items:baseline;gap:7px;min-width:0}
-.hero-num .grp.zero{display:none}
-.hero-num .n{font-size:clamp(44px,11vw,72px);line-height:1;letter-spacing:-.065em;font-weight:400;color:var(--accent);font-variant-numeric:tabular-nums}
-.hero-num .u{font-family:var(--serif);font-size:21px;color:#fff5e8}
-.result.empty .n{color:var(--text-dim)}
-.result-until{font-size:13px;color:#fff5e8;margin-top:22px}
-details{border-bottom:1px solid var(--line)}
-summary{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:66px;padding:12px 2px;list-style:none;cursor:pointer;font-size:14px;font-weight:500;transition:color .18s}
-summary:hover{color:var(--accent)}
-summary::-webkit-details-marker{display:none}
-summary::after{content:'+';display:grid;place-items:center;width:28px;height:28px;flex-shrink:0;border:1px solid var(--line);border-radius:50%;color:var(--text-dim);font-size:19px;font-weight:400}
-details[open] summary::after{content:'−';color:var(--accent);border-color:#f7931a}
-details .inner{padding:4px 0 22px}
-.field.compact{flex-direction:column;align-items:stretch;gap:7px;padding:16px 0}
-.field.compact label{font-size:13px;color:var(--text-dim)}
-.field.compact .in{gap:20px;padding:0 6px}
-.field.compact input{font-size:19px}
-.field.compact .unit[id]{display:grid;place-items:center;min-width:72px;padding:5px 9px;border-radius:7px;background:#fff3e2;font-size:13px;color:var(--accent);font-variant-numeric:tabular-nums}
-.field input[type=range]{appearance:none;-webkit-appearance:none;background:transparent;flex:1;width:100%;height:44px;min-height:44px;cursor:pointer}
-input[type=range]::-webkit-slider-runnable-track{height:4px;border-radius:8px;background:#eed1ae}
-input[type=range]::-moz-range-track{height:4px;border-radius:8px;background:#eed1ae}
-input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border:3px solid #ffffff;border-radius:50%;background:var(--accent);box-shadow:0 0 0 1px #f7931a;margin-top:-9px}
-input[type=range]::-moz-range-thumb{width:16px;height:16px;border:3px solid #ffffff;border-radius:50%;background:var(--accent);box-shadow:0 0 0 1px #f7931a}
-.table-box{max-height:520px;overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:#dbb88e transparent;display:flex;flex-direction:column;gap:12px}
-.year-card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:18px}
-.year-card.depleted{border-color:#d88981}
-.year-card.transition{border-color:#e9b979}
-.yc-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding-bottom:12px;margin-bottom:14px;border-bottom:1px solid var(--line)}
-.yc-left{display:flex;align-items:baseline;gap:10px}
-.yc-year{font-size:16px;font-weight:500;color:var(--accent)}
-.yc-cal{font-size:12px;color:var(--text-dim)}
-.yc-flag{font-size:11px;color:var(--warn)}
-.yc-flag.transition{color:var(--accent)}
-.yc-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 20px}
-.yc-item{display:flex;flex-direction:column;gap:4px;min-width:0}
-.yc-item .k{font-size:11px;line-height:1.45;color:var(--text-dim)}
-.yc-item .v{font-size:15px;line-height:1.4;font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
-.yc-item .v.dim{color:var(--text-dim)}
-.year-card.depleted .v{color:var(--warn)}
-.model-note{font-size:13px;line-height:1.8;color:var(--text-dim);padding-top:18px}
-.model-note a{color:var(--accent);text-underline-offset:3px}
-footer{margin-top:28px;color:var(--text-dim);font-size:11px;line-height:1.8;text-align:center;padding:0 20px}
-:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
-::selection{background:#f7931a;color:#f6f5f1}
-[hidden]{display:none!important}
-@media(min-width:760px){body{padding-top:64px;padding-bottom:56px}.input-panel{padding:6px 28px}.result{padding:36px 22px 32px}}
-@media(max-width:380px){body{padding-left:16px;padding-right:16px}.input-panel{padding:4px 16px}.field{gap:10px}.field label{font-size:13px}.field input{font-size:20px}.hero-num{gap:12px}.hero-num .u{font-size:18px}.yc-grid{gap:16px 12px}}
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
-/* Compact annual summaries and spending mode. */
-.spend-tools{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:6px 16px;padding:8px 0 12px;color:var(--text-dim);font-size:11px}
-.spend-tools button{font:500 11px/1.4 var(--sans);color:var(--accent);background:none;border:0;min-height:44px;text-decoration:underline;text-underline-offset:4px;cursor:pointer}
-.spend-tools button:hover{color:var(--text)}
-.field-hint{padding-top:0;font-size:11px}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+:root{
+  --bg:#f4f1ea; --paper:#fcfbf8; --ink:#171614; --body:#4f4b44; --muted:#7d776c;
+  --line:#ded8cc; --line-soft:#ebe6dc; --gold:#b88716; --gold-soft:#f3e5bb;
+  --btc:#e56f1f; --btc-soft:#f8dfcf; --sage:#dce5dc; --blue:#dce5ed;
+  --dark:#1c1b18; --dark2:#28261f; --shadow:0 14px 45px rgba(35,31,24,.07);
+  --serif:'Newsreader',Georgia,serif; --sans:'Manrope',system-ui,sans-serif;
+}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+a{color:inherit;text-decoration-thickness:1px;text-underline-offset:3px}
+.progress{position:fixed;z-index:50;left:0;top:0;height:3px;width:0;background:linear-gradient(90deg,var(--gold),var(--btc));box-shadow:0 0 12px rgba(229,111,31,.28)}
+.shell{max-width:1040px;margin:0 auto;padding:20px 22px 88px}
+.paper{background:var(--paper);border:1px solid rgba(194,184,166,.72);box-shadow:var(--shadow);border-radius:26px}
+.kicker{font-size:10px;line-height:1.3;text-transform:uppercase;letter-spacing:.18em;font-weight:700;color:var(--muted)}
+.hero{min-height:88vh;padding:clamp(56px,9vw,108px) clamp(24px,6vw,70px);display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden}
+.hero:before{content:"";position:absolute;width:420px;height:420px;border-radius:50%;right:-180px;top:-190px;background:radial-gradient(circle,rgba(184,135,22,.16),rgba(184,135,22,0) 67%)}
+.hero:after{content:"";position:absolute;width:320px;height:320px;border-radius:50%;left:-140px;bottom:-170px;background:radial-gradient(circle,rgba(229,111,31,.10),rgba(229,111,31,0) 68%)}
+.hero-inner{position:relative;z-index:1;max-width:850px;margin:auto;text-align:center}
+.hero h1{font-family:var(--serif);font-size:clamp(45px,7.7vw,78px);font-weight:500;line-height:.94;letter-spacing:-.037em;margin:18px auto 24px;max-width:900px}
+.hero h1 em{font-style:italic;font-weight:400;color:var(--btc)}
+.hero-lead{font-family:var(--serif);font-size:clamp(21px,2.8vw,29px);line-height:1.38;letter-spacing:-.01em;color:#3d3933;max-width:760px;margin:0 auto}
+.hero-note{margin:34px auto 0;display:inline-flex;gap:11px;align-items:center;padding:11px 16px;border-radius:999px;background:#f0ece3;border:1px solid var(--line);font-size:11px;color:var(--muted);font-weight:600}
+.hero-note b{color:var(--ink)}
+.mystery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:32px auto 0;max-width:760px;text-align:left}.mystery{padding:15px 16px;border-radius:14px;background:rgba(255,255,255,.58);border:1px solid var(--line)}.mystery span{display:block;font-size:9px;text-transform:uppercase;letter-spacing:.13em;color:var(--muted);font-weight:700}.mystery b{display:block;font-family:var(--serif);font-size:18px;line-height:1.2;margin-top:5px;font-weight:500}.mystery.question{background:var(--ink);border-color:var(--ink);color:white}.mystery.question span{color:#bdb6aa}.mystery.question b{color:#fff}
+.hero-scroll{position:absolute;left:50%;bottom:28px;transform:translateX(-50%);font-size:10px;color:#948d80;letter-spacing:.12em;text-transform:uppercase}
+.story{margin-top:22px}
+.section{padding:clamp(36px,6vw,70px) clamp(24px,6vw,72px);position:relative;overflow:hidden}
+.section+.section{margin-top:22px}
+.chap{display:flex;align-items:center;gap:11px;margin-bottom:24px;color:var(--muted);font-size:10px;text-transform:uppercase;letter-spacing:.15em;font-weight:700}
+.chap i{font-style:normal;width:29px;height:29px;border-radius:50%;background:var(--ink);color:#fff;display:grid;place-items:center;letter-spacing:0;font-size:11px}
+.section h2{font-family:var(--serif);font-weight:500;font-size:clamp(35px,5.6vw,57px);line-height:1.02;letter-spacing:-.03em;margin:0;max-width:780px}
+.section .lede{font-family:var(--serif);font-size:clamp(19px,2.6vw,25px);line-height:1.47;color:#555047;max-width:740px;margin:20px 0 0}
+.copy{font-size:15px;line-height:1.78;color:var(--body);max-width:720px;margin-top:24px}.copy strong{color:var(--ink);font-weight:700}
+.pivot{margin:34px 0 0;padding:25px 27px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);font-family:var(--serif);font-size:clamp(24px,3.5vw,34px);line-height:1.3;letter-spacing:-.014em;color:#2b2823}
+.pivot em{font-style:italic;color:var(--btc)}
+.bridge{max-width:760px;margin:32px auto;text-align:center;padding:18px 24px;font-family:var(--serif);font-size:clamp(21px,3vw,28px);line-height:1.38;color:#655e53}
+.bridge strong{font-weight:600;color:var(--ink)}
+.function-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:11px;margin-top:32px}
+.function{padding:21px;border:1px solid var(--line-soft);background:#f7f4ee;border-radius:16px}
+.function .icon{font-size:22px}.function b{font-family:var(--serif);font-size:20px;display:block;margin:10px 0 5px}.function p{font-size:12.5px;line-height:1.62;color:var(--muted);margin:0}
+.hardness{margin-top:34px;background:var(--dark);border-radius:19px;padding:27px;color:white}
+.hardness-top{display:flex;justify-content:space-between;gap:18px;align-items:flex-end;border-bottom:1px solid rgba(255,255,255,.12);padding-bottom:20px}
+.hardness h3{font-family:var(--serif);font-weight:500;font-size:clamp(25px,3.5vw,34px);margin:0}.hardness-top p{max-width:420px;margin:0;color:#bfb8aa;font-size:12px;line-height:1.6}
+.supply-row{display:grid;grid-template-columns:120px 1fr 168px;gap:16px;align-items:center;padding:15px 0;border-bottom:1px solid rgba(255,255,255,.09)}
+.supply-row:last-child{border-bottom:0;padding-bottom:0}.supply-name{font-size:13px;font-weight:700}.supply-track{height:8px;background:#3d3931;border-radius:999px;overflow:hidden}.supply-fill{height:100%;border-radius:999px}.supply-note{font-size:10px;line-height:1.45;color:#aaa294;text-align:right}.hardness-legend{font-size:9px;line-height:1.5;color:#898276;margin-top:12px;text-align:right}
+.callout{margin-top:28px;display:grid;grid-template-columns:70px 1fr;gap:18px;align-items:start;padding:21px 0;border-top:1px solid var(--line)}
+.callout-mark{font-family:var(--serif);font-size:58px;line-height:.8;color:var(--gold)}.callout p{font-family:var(--serif);font-size:21px;line-height:1.45;margin:0;color:#4e493f}.callout small{display:block;font-family:var(--sans);font-size:10px;line-height:1.5;color:var(--muted);margin-top:8px}
+.gold-section{background:linear-gradient(145deg,#fdf9ec,#fbf7ef)}
+.tradeoff-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:31px}
+.tradeoff{padding:23px;border:1px solid var(--line);border-radius:17px;background:rgba(255,255,255,.58)}
+.tradeoff .label{font-size:9px;text-transform:uppercase;letter-spacing:.14em;font-weight:700;color:var(--muted)}.tradeoff b{font-family:var(--serif);display:block;font-size:25px;margin:8px 0 7px}.tradeoff p{font-size:12px;line-height:1.62;color:var(--muted);margin:0}
+.fiat-section{background:#efece5}
+.evolution{margin:30px 0 12px;display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.evo{padding:15px 12px;border:1px solid var(--line);border-radius:13px;background:rgba(255,255,255,.48);min-height:116px}
+.evo .evo-icon{font-size:23px;margin-bottom:10px}.evo b{display:block;font-size:12px;letter-spacing:.02em;margin-bottom:6px}.evo p{font-size:10.5px;line-height:1.45;color:var(--muted)}
+.evo-arrow{display:none}.story-question{margin:27px 0 4px;padding:18px 20px;border-left:3px solid var(--ink);font-family:var(--serif);font-size:clamp(19px,2.5vw,25px);line-height:1.35}.story-question em{color:var(--gold);font-style:normal}
+.fiat-strip{display:grid;grid-template-columns:1fr auto 1fr;gap:14px;align-items:center;margin-top:32px}
+.today-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:11px;margin-top:31px}.today-card{padding:22px;border:1px solid var(--line);border-radius:17px;background:#faf8f3}.today-card .eyebrow{font-size:9px;text-transform:uppercase;letter-spacing:.14em;font-weight:700;color:var(--muted)}.today-card b{font-family:var(--serif);display:block;font-size:23px;line-height:1.15;margin:8px 0}.today-card p{font-size:11.5px;line-height:1.62;color:var(--muted);margin:0}.today-card strong{color:var(--ink)}
+.system-card{padding:23px;border-radius:17px;background:var(--paper);border:1px solid var(--line)}.system-card span{font-size:9px;text-transform:uppercase;letter-spacing:.14em;font-weight:700;color:var(--muted)}.system-card b{font-family:var(--serif);font-size:25px;display:block;margin:7px 0}.system-card p{font-size:12px;line-height:1.6;color:var(--muted);margin:0}.system-arrow{font-family:var(--serif);font-size:35px;color:#9b9385}
+.dark-section{background:var(--dark);color:#faf8f3;border-color:#353229}
+.dark-section .chap{color:#9f988b}.dark-section .chap i{background:#f7f3ea;color:var(--dark)}.dark-section .lede,.dark-section .copy{color:#bbb3a5}.dark-section .copy strong{color:#fff}.dark-section .pivot{border-color:#3b382f;color:#f0ece4}.dark-section .pivot em{color:#f4a26c}
+.btc-properties{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:31px}.btc-property{padding:20px;border-radius:16px;background:var(--dark2);border:1px solid #373329}.btc-property .num{font-family:var(--serif);font-size:31px;color:#f29457}.btc-property b{display:block;margin:5px 0 6px;font-size:13px}.btc-property p{font-size:11px;line-height:1.58;color:#aaa293;margin:0}
+.preference{margin-top:28px;padding:25px;border-radius:18px;background:#24221c;border:1px solid #3a362d}.preference .label{font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:#969083;font-weight:700}.preference h3{font-family:var(--serif);font-size:28px;font-weight:500;margin:8px 0 9px}.preference p{font-size:12px;line-height:1.7;color:#b9b1a4;margin:0}.preference strong{color:#fff}
 
-.detail-caption{font-size:11px;line-height:1.6;color:var(--text-dim);padding:0 0 14px}
-.table-box{gap:8px}
-.year-card{padding:13px 14px;border-radius:12px}
-.yc-head{padding:0;margin-bottom:12px;border:0;gap:8px}
-.yc-year{font-size:14px}
-.yc-cal{font-size:11px}
-.yc-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 14px}
-.yc-item{gap:2px}
-.yc-item .v{font-size:13px}
-.yc-foot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:5px 12px;font-size:10px;color:var(--text-dim);border-top:1px solid var(--line);margin-top:12px;padding-top:8px}
-@media(min-width:520px){.yc-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
-/* Horizonte: bitcoin orange and paper. */
-.title-dot{color:#f7931a}
-header{border:0;position:relative;padding-bottom:20px}
-.eyebrow{color:#696158;font-size:10px;letter-spacing:.16em}
-.brand-mark{width:32px;height:32px;border:0;background:#f7931a;color:white;border-radius:10px;transform:rotate(-8deg)}
-.subtitle{font-size:15px;color:#696158;margin-top:12px}
-.ticker{display:block;width:fit-content;max-width:100%;background:#fff3e2;border:1px solid #f0d7b5;border-radius:8px;padding:8px 12px;margin:4px 0 24px;color:#75502b;font-size:11px}
-.input-panel{border-color:#e4ded5;box-shadow:0 8px 26px #30241808;border-radius:18px}
-.field label{font-weight:600}
-.field input{font-weight:600}
-.input-panel .field:first-child .unit{color:#a53b2d}
-.result{overflow:hidden;isolation:isolate;background:#f7931a;border:0;box-shadow:0 12px 30px #f7931a26;border-radius:20px;margin:22px 0 26px}
-.result::before{content:'';position:absolute;z-index:-1;width:240px;height:240px;right:-150px;top:-155px;border:32px solid #ffffff10;border-radius:50%;pointer-events:none}
-.result-label{font-size:10px;letter-spacing:.14em;font-weight:600}
-.hero-num .n{color:#fff;font-weight:650;letter-spacing:-.06em}
-.hero-num .u{font-family:var(--sans);font-size:17px;color:#fff5e8;font-weight:400}
-.result.empty .n{color:#fff5e8}
-.result-until{font-size:12px}
-summary{font-size:14px;font-weight:600}
-summary::after{background:#fff;border-color:#e8dfd4;color:#f7931a}
-details[open] summary::after{background:#fff3e2}
-.year-card{box-shadow:0 2px 5px #30241804}
-.year-card.transition{background:#fff9f1}
-.year-card.depleted{background:#fff6f3}
-.yc-year{font-weight:650}
-.yc-item .v{font-weight:550}
-.yc-flag{background:#ffe7e1;padding:3px 7px;border-radius:5px}
-.spend-tools button{text-decoration:none;font-weight:600}
-.spend-tools button:hover{text-decoration:underline;text-underline-offset:3px}
-.model-note{font-size:14px;line-height:1.75}
-.method-list{list-style:disc;padding-left:20px;display:grid;gap:18px}
-.method-list li{padding-left:5px}
-.method-list li::marker{color:#f7931a}
-.method-list strong{display:block;color:var(--text);font-size:13px;margin-bottom:4px;font-weight:650}
-.method-list a{overflow-wrap:anywhere}
-#tax_note{border-left:3px solid #efc999;background:#fff3e2;padding:12px 15px;margin-top:12px;border-radius:0 8px 8px 0;font-size:12px}
-::selection{background:#ffe0b6;color:#25221e}
-@media(max-width:380px){.method-list{padding-left:17px;gap:16px}.model-note{font-size:13px}}
-/* Compact mobile dashboard; expanded sections retain natural scrolling. */
-:root{--accent-ink:#a34d00;--line:#e4ded5;--text:#25221e;--text-dim:#696158}
-body{background:var(--bg)}
-.result{background:transparent;border:0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);border-radius:0;box-shadow:none;overflow:visible;padding:24px 8px;margin:20px 0 10px}
-.result::before{display:none}
-.result-label,.result-until,.hero-num .u{color:var(--text-dim)}
-.hero-num .n{color:var(--text)}
-.result.empty .n{color:var(--text-dim)}
-.hero-num .grp:first-child .n{color:var(--accent-ink)}
-.yc-year,.model-note a,.spend-tools button,.field.compact .unit[id],summary:hover{color:var(--accent-ink)}
-summary::after,details[open] summary::after{color:var(--accent-ink)}
-:focus-visible{outline-color:var(--accent-ink)}
-.brand-mark{background:var(--accent);color:#fff}
-.ticker{background:transparent;border:0;padding:0;color:var(--text-dim)}
-@media(max-width:600px){
- body{min-height:100svh;padding:max(12px,env(safe-area-inset-top)) max(18px,env(safe-area-inset-right)) max(10px,env(safe-area-inset-bottom)) max(18px,env(safe-area-inset-left))}
- .page{max-width:440px}
- header{display:grid;grid-template-columns:1fr auto;align-items:center;gap:4px 12px;padding:0}
- h1{font-size:36px;grid-column:1;grid-row:1;line-height:1.1;letter-spacing:-.05em}
- .eyebrow{grid-column:2;grid-row:1;margin:0;font-size:0;gap:0}
- .brand-mark{font-size:21px;width:34px;height:34px;transform:none;border-radius:11px}
- .subtitle{grid-column:1/-1;font-size:11px;margin:0;line-height:1.4}
- .ticker{font-size:10px;line-height:1.5;margin:9px 0 10px}
- .input-panel{padding:0 14px;border-radius:14px;box-shadow:0 3px 14px #2c201507}
- .field{padding:4px 0;gap:12px;min-height:51px}
- .field label{font-size:12px;flex:1.1;line-height:1.35}
- .field .in{padding:0 3px;gap:5px;flex:1.2}
- .field input{font-size:20px;min-height:44px}
- .field .unit{font-size:10px}
- .field-hint{font-size:10px;line-height:1.4;padding:0 0 7px}
- .spend-tools{padding:0;gap:0 6px;min-height:44px;flex-wrap:nowrap}
- .spend-tools span{font-size:9px;max-width:44%;line-height:1.35}
- .spend-tools button{font-size:10px;text-align:right;line-height:1.4;min-height:44px}
- .result{padding:14px 0 13px;margin:12px 0 4px}
- .result-label{font-size:9px;letter-spacing:.1em;margin-bottom:12px}
- .hero-num{gap:16px;flex-wrap:wrap}
- .hero-num .n{font-size:48px;line-height:1;font-weight:600}
- .hero-num .u{font-size:14px}
- .hero-num .grp{gap:5px}
- .result-until{font-size:10px;line-height:1.5;margin-top:10px}
- summary{min-height:44px;padding:6px 0;font-size:12px}
- summary::after{width:24px;height:24px;font-size:17px}
- footer{font-size:9px;line-height:1.5;margin-top:10px;padding:0}
- .field.compact{padding:9px 0;gap:2px}
- .field.compact label{font-size:12px}
- .field.compact input{font-size:18px}
- .table-box{max-height:45svh}
- .model-note{font-size:13px}
+.precision{margin-top:24px;padding:17px 19px;border-radius:14px;background:#f6f2e9;border:1px solid var(--line-soft);font-size:12px;line-height:1.7;color:var(--body)}
+.precision strong{color:var(--ink)}
+.dark-section .precision{background:#24221c;border-color:#3a362d;color:#b9b1a4}.dark-section .precision strong{color:#fff}
+.concept{margin-top:24px;border:1px solid #3a362d;border-radius:15px;background:#24221c;padding:0 20px}
+.concept summary{cursor:pointer;padding:17px 0;font-size:11px;font-weight:700;color:#d8d1c5;letter-spacing:.02em}
+.concept p{margin:0 0 18px;font-size:12px;line-height:1.7;color:#aaa294}.concept strong{color:#fff}
+.source-ref{font-size:.65em;vertical-align:super;color:var(--btc);font-family:var(--sans);font-weight:700;text-decoration:none;margin-left:2px}
+
+.scale-section h2{max-width:820px}.chart-head{margin-top:34px;display:flex;justify-content:space-between;align-items:end;gap:20px}.chart-head h3{font-family:var(--serif);font-size:30px;font-weight:500;margin:0}.chart-head p{font-size:10px;line-height:1.5;color:var(--muted);max-width:330px;margin:0;text-align:right}
+.rows{display:flex;flex-direction:column;gap:17px;margin-top:23px}.row{display:grid;grid-template-columns:170px 1fr 94px;gap:14px;align-items:center}.asset{font-size:12px;font-weight:700}.asset small{font-size:9px;font-weight:500;color:var(--muted);display:block;margin-top:3px}.track{height:23px;border-radius:7px;background:#ece7de;position:relative;overflow:visible}.fill{height:100%;border-radius:7px;min-width:2px}.value{text-align:right}.value b{font-family:var(--serif);font-size:23px;font-weight:600;display:block;line-height:1}.value small{font-size:8.5px;color:var(--muted)}
+.row.gold-row,.row.btc-row{padding:9px 11px;border-radius:12px;margin-left:-11px;margin-right:-11px}.row.gold-row{background:#fbf4de}.row.btc-row{background:#fff0e6}.btc-track{outline:1px solid rgba(229,111,31,.32)}.btc-dot{position:absolute;left:max(.211%,3px);top:50%;transform:translate(-50%,-50%);width:11px;height:11px;border-radius:50%;background:var(--btc);border:2px solid white;box-shadow:0 0 0 2px var(--btc)}
+.compare{display:grid;grid-template-columns:1fr auto 1fr;gap:12px;align-items:stretch;margin-top:30px}.compare-card{padding:23px;border-radius:17px}.compare-card.gold{background:var(--gold-soft)}.compare-card.btc{background:var(--btc-soft)}.compare-card span{font-size:9px;text-transform:uppercase;letter-spacing:.14em;font-weight:700;color:#746c60}.compare-card strong{font-family:var(--serif);font-weight:600;font-size:39px;display:block;margin:4px 0}.compare-card p{font-size:11px;line-height:1.55;color:#655e54;margin:0}.compare-mid{display:grid;place-items:center;font-family:var(--serif);font-size:20px;color:var(--muted)}
+.final{padding:clamp(48px,7vw,80px) clamp(24px,6vw,72px);text-align:center}.final h2{font-family:var(--serif);font-size:clamp(38px,6vw,64px);font-weight:500;line-height:1;letter-spacing:-.032em;max-width:820px;margin:14px auto}.final .lede{margin:20px auto 0;max-width:700px}.final-question{max-width:740px;margin:35px auto 0;background:var(--ink);color:white;padding:28px 30px;border-radius:18px;font-family:var(--serif);font-size:clamp(24px,3.4vw,34px);line-height:1.3}.final-question em{color:#f1a36f;font-style:italic}
+.sources{margin-top:22px;padding:22px 26px}.sources summary{cursor:pointer;font-weight:700;font-size:12px}.sources ol{padding-left:20px;margin-bottom:0}.sources li,.sources p{font-size:10.5px;line-height:1.7;color:var(--muted)}.sources .note{padding:12px 14px;border-radius:11px;background:#f3efe7;margin-top:12px}.sources strong{color:var(--ink)}
+.reveal{opacity:0;transform:translateY(15px);transition:opacity .7s ease,transform .7s ease}.reveal.visible{opacity:1;transform:none}
+@media(max-width:760px){
+  .shell{padding:12px 11px 54px}.paper{border-radius:20px}.hero{min-height:85vh;padding:48px 20px}.hero h1{font-size:clamp(39px,11vw,56px)}.hero-lead{font-size:21px}.hero-scroll{display:none}
+  .section{padding:35px 20px}.function-grid,.tradeoff-grid,.btc-properties,.today-grid,.mystery-grid,.evolution{grid-template-columns:1fr}.hardness-top{display:block}.hardness-top p{margin-top:9px}.supply-row{grid-template-columns:82px 1fr 82px;gap:9px}.supply-note{font-size:8.5px}.callout{grid-template-columns:44px 1fr}.callout-mark{font-size:45px}.fiat-strip,.compare{grid-template-columns:1fr}.system-arrow,.compare-mid{transform:rotate(90deg);padding:0}.row{grid-template-columns:105px 1fr 70px;gap:8px}.asset{font-size:10px}.value b{font-size:18px}.chart-head{display:block}.chart-head p{text-align:left;margin-top:7px}.bridge{font-size:21px}
 }
-@media(max-width:360px){.hero-num .n{font-size:43px}.hero-num{gap:12px}.field label{font-size:11px}.field-hint{font-size:9px}}
-/* Brand accent: Bitcoin orange throughout, including visited links. */
-.title-dot,.yc-year,.yc-flag.transition,.spend-tools button,.spend-tools button:hover,
-.field.compact .unit[id],summary:hover,summary::after,details[open] summary::after,
-.model-note a,.model-note a:visited,.input-panel .field:first-child .unit{color:#f7931a}
-.brand-mark{background:#f7931a;color:#fff}
-/* Editorial balance: warm neutrals, aligned figures, restrained Bitcoin accent. */
-:root{--bg:#faf9f6;--text:#27231e;--text-dim:#686159;--line:#e9e3da;--sans:-apple-system,BlinkMacSystemFont,"Avenir Next","Segoe UI",sans-serif}
-body{font-feature-settings:"kern";text-rendering:optimizeLegibility}
-.page{max-width:560px}
-h1{font-weight:700;letter-spacing:-.055em}
-.eyebrow{font-weight:600;letter-spacing:.15em;color:#73685b}
-.subtitle{color:#494239;line-height:1.5;letter-spacing:-.015em;font-weight:400}
-.subtitle span{color:#686159}
-.brand-mark{border-radius:50%;transform:rotate(10deg);font-weight:650}
-.input-panel{background:#fff;border-color:#e9e3da;box-shadow:0 4px 18px #35281505}
-.field label{font-weight:500;color:#494239}
-.field .in{flex:none;width:51%}
-.field input{letter-spacing:-.025em;font-weight:550;font-variant-numeric:tabular-nums lining-nums}
-.field .unit:last-child{min-width:29px;text-align:right;color:#71685c}
-.field .in>span:first-child:not(:last-child){color:#85796b}
-.ticker{color:#71685c;font-variant-numeric:tabular-nums;letter-spacing:.005em}
-.ticker b{font-weight:600;color:#3a332b}
-.result-label{color:#71685c;letter-spacing:.12em;font-weight:500}
-.hero-num .n,.hero-num .grp:first-child .n{color:#27231e;font-weight:550;letter-spacing:-.05em}
-.hero-num .u{color:#7b6e5d;font-weight:400}
-.result-until{color:#686159;letter-spacing:.005em}
-.result.empty .n{color:#85796b}
-summary{font-weight:500;color:#494239}
-summary::after{background:transparent;border-color:#e9e0d3}
-.yc-head{align-items:baseline}
-.yc-item .v{font-weight:550;letter-spacing:-.015em}
-.yc-item .k{color:#71685c}
-.yc-foot{font-size:11px}
-.model-note{max-width:62ch}
-.method-list strong{font-weight:600}
-footer{color:#7b7369}
-@media(max-width:600px){
- .page{max-width:440px}
- header{gap:5px 12px}
- h1{font-size:37px;line-height:1.05}
- .brand-mark{width:32px;height:32px;font-size:21px}
- .eyebrow{font-size:0}
- .subtitle{font-size:12px;line-height:1.4}
- .ticker{margin:9px 0 11px;font-size:10px}
- .field label{font-size:12px}
- .field input{font-size:21px}
- .field .in{width:50%;flex:none}
- .input-panel{padding:0 13px}
- .field-hint{color:#71685c;font-size:10px;line-height:1.4}
- .spend-tools{gap:4px 8px}
- .spend-tools span{font-size:10px;max-width:43%}
- .spend-tools button{font-size:10px;font-weight:600}
- .hero-num{column-gap:19px}
- .hero-num .n{font-size:49px}
- .hero-num .u{font-size:14px}
- .result{padding:13px 0 12px;margin-top:12px}
- .result-label{margin-bottom:11px}
- .result-until{margin-top:9px;font-size:11px}
- summary{font-size:12px}
- footer{font-size:9px}
-}
-@media(max-width:360px){h1{font-size:34px}.subtitle{font-size:11px}.hero-num .n{font-size:43px}.field input{font-size:19px}.field-hint{font-size:9px}}
-/* Safe framing and numeric hierarchy. */
-body{padding-left:max(28px,env(safe-area-inset-left));padding-right:max(28px,env(safe-area-inset-right))}
-header{padding-left:3px;padding-right:3px}
-.hero-num .n{font-weight:650}
-.result-label{font-size:10px;letter-spacing:.1em}
-.year-card{padding:10px 12px;border-radius:10px;box-shadow:none}
-.yc-head{margin-bottom:8px}
-.yc-year{font-size:12px;font-weight:550}
-.yc-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 12px}
-.yc-item{gap:1px}
-.yc-item .k{font-size:10px;line-height:1.4}
-.yc-item .v{font-size:12px;line-height:1.3;font-weight:450;color:#696158}
-.yc-primary .v{font-size:17px;line-height:1.3;font-weight:650;color:var(--text);letter-spacing:-.03em}
-.yc-foot{margin-top:8px;padding-top:6px;font-size:10px;gap:4px 8px}
-.table-box{gap:7px;padding-right:3px}
-.field input{font-weight:600}
-#i_spend{font-weight:700}
-@media(max-width:600px){
- body{padding:calc(env(safe-area-inset-top) + 22px) max(26px,env(safe-area-inset-right)) calc(env(safe-area-inset-bottom) + 12px) max(26px,env(safe-area-inset-left))}
- header{padding:0 2px}
- h1{font-size:35px}
- .subtitle{font-size:11px}
- .input-panel{padding:0 11px}
- .field{min-height:48px;padding:2px 0;gap:8px}
- .field .in{width:52%}
- .field label{font-size:11px}
- .field-hint{font-size:10px;line-height:1.35;padding-bottom:5px}
- .result{padding:12px 0;margin:11px 0 3px}
- .hero-num .n{font-size:50px;font-weight:650}
- .hero-num{gap:14px}
- .hero-num .u{font-size:13px}
- .result-label{font-size:9px;margin-bottom:10px}
- .result-until{font-size:10px;margin-top:8px}
- .spend-tools span{font-size:9px}
- .spend-tools button{font-size:10px}
- .yc-primary .v{font-size:16px}
- footer{margin-top:8px}
-}
-@media(max-width:360px){body{padding-left:22px;padding-right:22px}.hero-num .n{font-size:42px}.hero-num{gap:10px}.field input{font-size:18px}.yc-primary .v{font-size:15px}}
-/* Currency is secondary to the amount. */
-.year-card{border-radius:18px}
-.year-card .currency-unit{font-size:9px;font-weight:400;letter-spacing:.02em;color:var(--text-dim);white-space:nowrap}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.reveal{opacity:1;transform:none;transition:none}}
 </style>
 </head>
 <body>
-<div class="page">
-  <header>
-    <p class="eyebrow"><span class="brand-mark" aria-hidden="true">₿</span> Patrón Bitcoin</p>
-    <h1>Horizonte<span class="title-dot">.</span></h1>
-    <p class="subtitle">Un patrimonio propio. <span>Un horizonte libre.</span></p>
-  </header>
+<div class="progress" id="progress"></div>
+<main class="shell">
 
-  <p class="ticker" id="live_price" role="status" aria-live="polite">BTC — cargando…</p>
-
-  <main>
-  <section class="input-panel" aria-label="Tus ahorros y gastos">
-  <div class="field">
-    <label for="i_btc">Bitcoin</label>
-    <div class="in"><input type="number" id="i_btc" value="1" step="0.001" min="0" max="21000000" inputmode="decimal"><span class="unit">BTC</span></div>
-  </div>
-  <div class="field">
-    <label for="i_lump">Otros ahorros y activos</label>
-    <div class="in"><span class="unit">$</span><input type="text" id="i_lump" placeholder="0" inputmode="decimal" autocomplete="off" aria-describedby="lump_hint"><span class="unit">MXN</span></div>
-  </div>
-  <p class="field-hint" id="lump_hint">Efectivo, inmuebles, bonos y acciones · valor neto en MXN.</p>
-  <div class="field">
-    <label for="i_spend">Gasto mensual</label>
-    <div class="in"><span class="unit">$</span><input type="text" id="i_spend" placeholder="0" inputmode="decimal" autocomplete="off" aria-describedby="spend_hint"><span class="unit">MXN</span></div>
-  </div>
-
-  <div class="spend-tools">
-    <span id="spend_hint"></span>
-    <button type="button" id="spend_auto">Calcular gasto hasta 2077</button>
-  </div>
-  </section>
-
-  <div class="result" id="result" role="status" aria-live="polite" aria-atomic="true">
-    <p class="result-label">Duración estimada del patrimonio</p>
-    <div class="hero-num">
-      <div class="grp" id="grp_y"><span class="n" id="out_y">—</span><span class="u" id="out_y_u"></span></div>
-      <div class="grp" id="grp_m"><span class="n" id="out_m">—</span><span class="u" id="out_m_u"></span></div>
+<section class="hero paper">
+  <div class="hero-inner">
+    <div class="kicker">Una pregunta escondida a plena vista</div>
+    <h1>Un billete es papel.<br/>Tu saldo bancario son números.<br/><em>¿Por qué compran cosas reales?</em></h1>
+    <p class="hero-lead">Usas dinero casi todos los días, pero su valor no está en el material del que está hecho. Aceptamos trabajar, vender y pagar deudas con algo que, por sí solo, no alimenta, no abriga y no construye nada. <strong>Entonces, ¿qué es exactamente el dinero y por qué funciona?</strong></p>
+    <div class="mystery-grid">
+      <div class="mystery"><span>En tu bolsillo</span><b>Un objeto que llamamos dinero</b></div>
+      <div class="mystery"><span>En tu banco</span><b>Un registro que también llamamos dinero</b></div>
+      <div class="mystery question"><span>La pregunta</span><b>¿Qué tienen en común?</b></div>
     </div>
-    <p class="result-until" id="out_until"></p>
+    <div class="hero-note"><span>↓</span><span><b>Sigue la pista</b>: intercambio → metales → monedas → papel → bancos → dinero fiat → Bitcoin</span></div>
   </div>
+  <div class="hero-scroll">Empieza por el problema ↓</div>
+</section>
 
-  <details id="detailToggle" hidden>
-    <summary>Proyección anual</summary>
-    <p class="detail-caption">Gasto promedio con inflación · saldos al cierre, antes de costos de venta.</p>
-    <div class="inner table-box" id="detailBody"></div>
-  </details>
+<div class="story">
+<section class="section paper reveal">
+  <div class="chap"><i>1</i> El problema que había que resolver</div>
+  <h2>Antes del dinero, intercambiar requería demasiadas coincidencias.</h2>
+  <p class="lede">Imagina que produces pan y necesitas zapatos. Puedes buscar a un zapatero, pero el intercambio solo funciona si esa persona también quiere tu pan, en ese momento, y ambos coinciden en cuánto vale cada cosa. El trueque hace evidente el problema: <strong>querer comerciar no garantiza poder hacerlo.</strong><a class="source-ref" href="#src1">1</a></p>
+  <div class="copy">La salida es introducir un tercer elemento. En lugar de cambiar pan directamente por zapatos, vendes el pan a cambio de algo que no necesitas consumir. Lo aceptas porque esperas que otra persona también lo acepte después. Ese objeto intermedio es lo que empieza a funcionar como <strong>medio de intercambio</strong>.</div>
+  <div class="function-grid">
+    <div class="function"><div class="icon">↔️</div><b>Intercambiar</b><p>Ya no necesitas encontrar a alguien que quiera exactamente lo que tú ofreces.</p></div>
+    <div class="function"><div class="icon">📏</div><b>Comparar</b><p>Una referencia común permite decir cuánto cuesta el pan, los zapatos o una hora de trabajo.</p></div>
+    <div class="function"><div class="icon">⏳</div><b>Posponer</b><p>Si conserva suficiente poder de compra, puedes recibirlo hoy y gastarlo más adelante.</p></div>
+  </div>
+  <div class="precision"><strong>La idea importante no es que toda sociedad haya seguido una única secuencia histórica.</strong> El trueque sirve aquí para mostrar el problema económico que el dinero resuelve: coordinar intercambios usando una referencia común.</div>
+  <div class="pivot">Eso deja una pregunta inevitable: <em>si vas a aceptar algo que no necesitas, confiando en que otro lo aceptará después, ¿qué clase de objeto elegirías?</em></div>
+</section>
 
-  <details>
-    <summary>Supuestos</summary>
-    <div class="inner">
-      <div class="field compact">
-        <label for="i_fx">Tipo de cambio</label>
-        <div class="in"><input type="number" id="i_fx" value="20" step="0.01" min="1" max="1000" inputmode="decimal"><span class="unit">MXN/USD</span></div>
-      </div>
-      <div class="field compact">
-        <label for="i_infl">Inflación anual</label>
-        <div class="in"><input type="range" id="i_infl" min="0" max="8" step="0.1" value="4"><span class="unit" id="v_infl">4.0%</span></div>
-      </div>
-      <div class="field compact">
-        <label for="i_fee">Comisión de venta</label>
-        <div class="in"><input type="range" id="i_fee" min="0" max="3" step="0.1" value="0.5"><span class="unit" id="v_fee">0.5%</span></div>
-      </div>
-      <div class="field compact">
-        <label for="i_other_income">Otros ingresos anuales</label>
-        <div class="in"><input type="text" id="i_other_income" value="0" inputmode="decimal" autocomplete="off"><span class="unit">MXN</span></div>
-      </div>
-      <div class="field compact">
-        <label for="i_taxable">Parte de la venta sujeta a ISR</label>
-        <div class="in"><input type="range" id="i_taxable" min="0" max="100" step="1" value="100" aria-describedby="tax_note"><span class="unit" id="v_taxable">100%</span></div>
-      </div>
-      <div class="field compact">
-        <label for="i_n">Crecimiento del modelo · n</label>
-        <div class="in"><input type="range" id="i_n" min="5.5" max="6.1" step="0.01" value="5.82"><span class="unit" id="v_n">5.82</span></div>
-      </div>
-      <div class="field compact">
-        <label for="i_a">Escala del modelo · A ×10⁻¹⁷</label>
-        <div class="in"><input type="range" id="i_a" min="0.3" max="3" step="0.01" value="1.0117"><span class="unit" id="v_a">1.0117</span></div>
-      </div>
-      <div class="field compact">
-        <label for="i_floor">Banda de precio · multiplicador</label>
-        <div class="in"><input type="range" id="i_floor" min="0.2" max="0.8" step="0.01" value="0.42"><span class="unit" id="v_floor">0.42</span></div>
-      </div>
-      <p class="model-note" id="tax_note">Este porcentaje aproxima qué parte de cada venta se grava. El 100% aplica el cálculo a toda la venta. Los otros ingresos solo ajustan el ISR; no se suman al dinero disponible para gastar.</p>
-    </div>
-  </details>
+<section class="section paper reveal">
+  <div class="chap"><i>2</i> Qué cosas pueden convertirse en dinero</div>
+  <h2>Un buen dinero tiene que sobrevivir al siguiente intercambio.</h2>
+  <p class="lede">A lo largo de la historia se utilizaron distintos bienes como dinero. Cuanto más comercio había, más valiosos resultaban ciertos atributos: que el objeto <strong>durara, pudiera dividirse, fuera fácil de transportar y reconocer, y no pudiera producirse en cantidades enormes de un día para otro.</strong><a class="source-ref" href="#src1">1</a></p>
+  <div class="evolution">
+    <div class="evo"><div class="evo-icon">🥖</div><b>Intercambio directo</b><p>Entregas un bien y recibes otro. Funciona, pero exige encontrar la contraparte adecuada.</p></div>
+    <div class="evo"><div class="evo-icon">🐚</div><b>Bien de referencia</b><p>Algunos bienes empiezan a recibirse no para consumirlos, sino porque otros también los reconocen.</p></div>
+    <div class="evo"><div class="evo-icon">⚖️</div><b>Metal por peso</b><p>Oro y plata concentran valor, duran mucho y pueden fraccionarse.</p></div>
+    <div class="evo"><div class="evo-icon">🪙</div><b>Monedas</b><p>El sello y la estandarización reducen la necesidad de pesar y comprobar cada pieza en cada pago.</p></div>
+    <div class="evo"><div class="evo-icon">📜</div><b>Papel y registros</b><p>En vez de mover siempre el metal, pueden circular derechos o promesas sobre valor custodiado.</p></div>
+    <div class="evo"><div class="evo-icon">📱</div><b>Dinero actual</b><p>Hoy gran parte de lo que usamos para pagar existe como depósitos y registros electrónicos.</p></div>
+  </div>
+  <div class="copy">Los metales preciosos ganaron terreno porque combinaban varias propiedades útiles a la vez: durabilidad, divisibilidad, portabilidad relativa y oferta limitada. La acuñación añadió otra ventaja: una pieza estandarizada y sellada era más sencilla de reconocer que una cantidad de metal que había que pesar y verificar en cada operación.<a class="source-ref" href="#src2">2</a></div>
+  <div class="pivot">El metal funcionaba. Pero tenía un defecto muy físico: <em>cuanto más valor querías mover, más incómodo era cargarlo y protegerlo.</em></div>
+</section>
 
-  <details>
-    <summary>Metodología</summary>
-    <div class="inner model-note">
-      <ul class="method-list">
-        <li><strong>Retiros</strong>El primer retiro ocurre dentro de un mes. La proyección termina en diciembre de 2077.</li>
-        <li><strong>Otros ahorros y activos</strong>Se toma su valor neto de liquidación: después de deudas, impuestos y comisiones. Se consideran disponibles desde hoy y se utilizan antes que el BTC.</li>
-        <li><strong>Rendimiento y disponibilidad</strong>Los otros activos no generan rendimiento ni revalorización en el modelo. No se incluyen rentas ni plazos de venta.</li>
-        <li><strong>Precio de bitcoin</strong>Se mantiene el precio actual durante el resto del año. Desde el siguiente, se utiliza la banda inferior de la ley de potencia, calculada cada 1 de enero. Si no hay cotización disponible, esa banda también se usa como precio inicial.</li>
-        <li><strong>Impuestos</strong>El ISR estimado está incluido en el cálculo, con la <a href="https://www.sat.gob.mx/minisitio/NormatividadRMFyRGCE/documentos2026/rmf/anexos/Anexo-8-RMF-2026_DOF-28122025.pdf" target="_blank" rel="noopener noreferrer">tarifa anual de 2026</a>. Es una aproximación; no sustituye el cálculo del costo fiscal, las deducciones ni las obligaciones particulares.</li>
-      </ul>
-    </div>
-  </details>
-  </main>
+<section class="section paper gold-section reveal">
+  <div class="chap"><i>3</i> Cuando dejamos de mover el metal</div>
+  <h2>El siguiente salto fue mover la promesa, no el oro.</h2>
+  <p class="lede">En una de las rutas europeas hacia el billete moderno, las personas dejaron monedas y metales bajo custodia y recibieron comprobantes. En Inglaterra, los orfebres del siglo XVII entregaban recibos por depósitos; con el tiempo, esos papeles podían circular directamente entre personas. El Bank of England comenzó a emitir sus propios billetes a finales de ese siglo.<a class="source-ref" href="#src3">3</a></p>
+  <div class="tradeoff-grid">
+    <div class="tradeoff"><div class="label">Lo que cambió</div><b>Ya no movías el activo</b><p>Podías pagar transfiriendo un papel o un registro que representaba un derecho sobre algo guardado.</p></div>
+    <div class="tradeoff"><div class="label">Lo que apareció</div><b>Un intermediario</b><p>Ahora importaba no solo el metal, sino también confiar en quien lo custodiaba y reconocía la promesa.</p></div>
+  </div>
+  <div class="copy">Durante mucho tiempo coexistieron monedas metálicas, billetes convertibles y depósitos bancarios. En el siglo XX, Bretton Woods llevó esa lógica al sistema monetario internacional: después de la Segunda Guerra Mundial, muchas monedas se vincularon al dólar y Estados Unidos mantenía la conversión oficial del dólar en oro para autoridades monetarias extranjeras a US$35 por onza.<a class="source-ref" href="#src4">4</a></div>
+  <div class="story-question">Hasta aquí el soporte cambió —metal, moneda, papel, registro— pero quedaba una pregunta sencilla: <em>¿puedo convertir esta promesa en el activo que dice representar?</em></div>
+</section>
 
-  <footer>Estimación hasta diciembre de 2077 · no es asesoría financiera ni fiscal</footer>
+<section class="section paper fiat-section reveal">
+  <div class="chap"><i>4</i> El salto al dinero fiat</div>
+  <h2>Después conservamos la moneda… pero dejamos atrás la promesa de convertirla en oro.</h2>
+  <p class="lede">El 15 de agosto de 1971, Estados Unidos suspendió la convertibilidad del dólar en oro para autoridades monetarias extranjeras. El sistema de Bretton Woods terminó de deshacerse en los años siguientes. Desde entonces, las principales monedas funcionan sin una tasa fija de conversión a una mercancía como el oro.<a class="source-ref" href="#src4">4</a></p>
+  <div class="fiat-strip">
+    <div class="system-card"><span>Dinero convertible</span><b>“Este dinero puede canjearse”</b><p>Su emisor mantiene una regla que vincula la unidad monetaria con un activo de referencia.</p></div>
+    <div class="system-arrow">→</div>
+    <div class="system-card"><span>Dinero fiat</span><b>“Esta unidad es el dinero”</b><p>No promete una cantidad fija de oro. Es la unidad en la que se fijan precios, salarios, contratos, impuestos y pagos.</p></div>
+  </div>
+  <div class="copy">Fiat no significa “dinero sin nada detrás”. Significa que su valor no depende de redimir cada unidad por una cantidad fija de una mercancía. El sistema descansa en una red de instituciones, leyes, bancos, medios de pago y, sobre todo, en la expectativa de que esa misma unidad seguirá siendo aceptada en los intercambios.<a class="source-ref" href="#src5">5</a></div>
+  <div class="precision"><strong>Y aquí conviene evitar un atajo:</strong> abandonar la convertibilidad en oro no implica automáticamente inflación descontrolada. La estabilidad de una moneda fiat depende de política monetaria, crédito, producción, demanda, regulación y confianza institucional, entre otros factores.</div>
+  <div class="pivot">Pero si el dinero ya no sale de una mina ni representa una cantidad fija de metal, aparece la pregunta más interesante de todas: <em>¿de dónde sale el dinero que hoy ves en tu cuenta?</em></div>
+</section>
+
+<section class="section paper reveal">
+  <div class="chap"><i>5</i> Cómo funciona el sistema actual</div>
+  <h2>La mayor sorpresa: el dinero moderno no es principalmente billetes.</h2>
+  <p class="lede">En las economías modernas, gran parte del dinero que utilizan hogares y empresas toma la forma de <strong>depósitos bancarios</strong>: los números que ves en una cuenta y puedes transferir con una tarjeta o una aplicación. El efectivo es solo una de las formas del dinero actual.<a class="source-ref" href="#src12">12</a><a class="source-ref" href="#src14">14</a></p>
+  <div class="today-grid">
+    <div class="today-card"><div class="eyebrow">Banco central</div><b>Crea dinero del banco central</b><p>Emite billetes y crea reservas electrónicas que utilizan los bancos para liquidar pagos entre sí. También influye en las condiciones monetarias mediante sus herramientas de política.</p></div>
+    <div class="today-card"><div class="eyebrow">Bancos comerciales</div><b>Crean depósitos al prestar</b><p>Cuando un banco concede un préstamo, normalmente acredita un depósito nuevo en la cuenta del prestatario. Ese depósito puede gastarse y transferirse como dinero.<a class="source-ref" href="#src13">13</a><a class="source-ref" href="#src14">14</a></p></div>
+    <div class="today-card"><div class="eyebrow">Tú</div><b>Usas ambos como una misma unidad</b><p>Esperas que un peso, dólar o euro depositado en tu banco pueda convertirse y pagarse a la par con la moneda emitida por el banco central.</p></div>
+  </div>
+  <div class="copy">Por eso la imagen de una “impresora” explica solo una parte del sistema. Los bancos comerciales crean dinero cuando expanden crédito y crean depósitos; cuando esos préstamos se pagan, ese dinero bancario puede desaparecer. Los bancos tampoco pueden prestar sin límite: rentabilidad, regulación, capital, liquidez, riesgo, demanda de crédito y la política del banco central restringen cuánto crédito pueden crear.<a class="source-ref" href="#src13">13</a></div>
+  <div class="story-question">Ahora la palabra <em>fiat</em> deja de ser abstracta. Describe un sistema en el que el dinero puede expandirse o contraerse mediante decisiones institucionales y crédito, en lugar de estar atado a la cantidad disponible de una mercancía.</div>
+  <div class="pivot">Y eso abre la siguiente pregunta: <em>si distintas formas de dinero pueden aumentar su oferta de maneras muy diferentes, ¿por qué debería importarte?</em></div>
+</section>
+
+<section class="section paper reveal">
+  <div class="chap"><i>6</i> Por qué importa la oferta</div>
+  <h2>Dos cosas pueden servir para pagar y, aun así, comportarse de forma muy distinta cuando aumenta la demanda.</h2>
+  <p class="lede">La cantidad disponible de un bien no es el único factor que determina su precio o su poder de compra. Pero sí importa <strong>qué tan fácil es aumentar su oferta</strong>. Si producir nuevas unidades es rápido, la oferta puede reaccionar con fuerza. Si es lento o está limitada por reglas conocidas, la respuesta es distinta.</p>
+  <div class="hardness">
+    <div class="hardness-top"><h3>Si aumenta la demanda…</h3><p>Estas barras ilustran únicamente la capacidad de expandir nueva oferta. No representan rendimiento, seguridad ni calidad de inversión.</p></div>
+    <div class="supply-row"><div class="supply-name">Bien fácil de producir</div><div class="supply-track"><div class="supply-fill" style="width:84%;background:#8d877c"></div></div><div class="supply-note">La producción puede aumentar rápido</div></div>
+    <div class="supply-row"><div class="supply-name">Oro</div><div class="supply-track"><div class="supply-fill" style="width:26%;background:#d1a339"></div></div><div class="supply-note">Extraer nuevo oro requiere tiempo y capital</div></div>
+    <div class="supply-row"><div class="supply-name">Bitcoin</div><div class="supply-track"><div class="supply-fill" style="width:7%;background:#ea7a30"></div></div><div class="supply-note">Su calendario de emisión no aumenta con la demanda</div></div>
+    <div class="hardness-legend">Ilustración conceptual; los anchos no representan porcentajes.</div>
+  </div>
+  <div class="copy">El oro es un buen ejemplo de oferta difícil de expandir rápidamente. El World Gold Council estima unas 222,600 toneladas de oro sobre la superficie al cierre de Q2 2026, valoradas en aproximadamente US$29T.<a class="source-ref" href="#src6">6</a> Extraer más requiere descubrir depósitos, invertir capital y desarrollar proyectos mineros.</div>
+  <div class="precision"><strong>Escasez no significa precio estable ni garantiza que algo sea una buena inversión.</strong> Aquí solo estamos aislando una propiedad del dinero y de los activos monetarios: cómo responde su oferta cuando cambia la demanda.</div>
+</section>
+
+<div class="bridge reveal">Ya vimos tres formas de controlar la oferta: <strong>la naturaleza</strong> en el oro, <strong>las instituciones y el crédito</strong> en el dinero fiat, y ahora una tercera posibilidad: <strong>reglas de software compartidas por una red.</strong></div>
+
+
+<section class="section paper dark-section reveal">
+  <div class="chap"><i>7</i> Dónde entra Bitcoin</div>
+  <h2>Bitcoin hace una pregunta nueva: ¿puede la escasez existir sin un objeto físico?</h2>
+  <p class="lede">Bitcoin no está respaldado por oro y tampoco lo emite un banco central. Su red utiliza un conjunto de reglas compartidas para registrar propiedad y emitir nuevas unidades a un ritmo conocido de antemano. La emisión se reduce aproximadamente a la mitad cada 210,000 bloques y converge hacia un máximo cercano a 21 millones de bitcoin.<a class="source-ref" href="#src10">10</a></p>
+  <div class="btc-properties">
+    <div class="btc-property"><div class="num">21M</div><b>Oferta máxima</b><p>Las reglas actuales de la red convergen hacia un límite cercano a 21 millones.</p></div>
+    <div class="btc-property"><div class="num">210k</div><b>Bloques por ciclo</b><p>La recompensa de emisión se reduce aproximadamente cada 210,000 bloques.</p></div>
+    <div class="btc-property"><div class="num">24/7</div><b>Activo digital</b><p>Puede transmitirse en una red global sin mover un objeto físico.</p></div>
+  </div>
+  <div class="copy">Eso no significa que sus reglas sean “matemáticamente imposibles” de modificar: el software puede cambiar. La diferencia es que los participantes de la red deciden qué reglas aceptan al ejecutar software compatible; una modificación no puede imponer por sí sola una nueva versión a toda la red.<a class="source-ref" href="#src10">10</a></div>
+  <div class="pivot">Bitcoin no demuestra que la escasez digital vaya a ser más valiosa que el oro o el fiat. Lo que introduce es algo distinto: <em>una oferta monetaria digital cuyo calendario no aumenta simplemente porque aumente la demanda.</em></div>
+</section>
+
+<div class="bridge reveal">Ahora sí tiene sentido mirar el tamaño. No como una predicción, sino para entender la escala actual de oro y Bitcoin frente a otros mercados.</div>
+
+<section class="section paper scale-section reveal">
+  <div class="chap"><i>8</i> Mira la escala, no una predicción</div>
+  <h2>Bitcoin sigue siendo pequeño frente al oro. Eso es un dato; lo que ocurra después no lo es.</h2>
+  <p class="lede">La comparación de abajo suma cinco grandes categorías solo para visualizar órdenes de magnitud. El porcentaje indica la participación de cada una <strong>dentro de esta muestra</strong>; no representa “toda la riqueza del mundo” ni un balance contable global.</p>
+  <div class="chart-head"><h3>Muestra comparativa ≈ US$725.8T</h3><p>Las fuentes usan fechas y metodologías distintas. La suma es una herramienta visual, no una medida de riqueza neta mundial.</p></div>
+  <div class="rows">
+    <div class="row"><div class="asset">🏠 Bienes raíces<small>Savills · cierre 2024</small></div><div class="track"><div class="fill" style="width:54.19%;background:#ae5149"></div></div><div class="value"><b>54.19%</b><small>US$393.3T</small></div></div>
+    <div class="row"><div class="asset">📈 Acciones<small>WFE · cierre 2025</small></div><div class="track"><div class="fill" style="width:20.93%;background:#4f6f96"></div></div><div class="value"><b>20.93%</b><small>US$151.94T</small></div></div>
+    <div class="row"><div class="asset">📜 Deuda<small>BIS · cierre 2024</small></div><div class="track"><div class="fill" style="width:20.67%;background:#a86d42"></div></div><div class="value"><b>20.67%</b><small>&gt;US$150T</small></div></div>
+    <div class="row gold-row"><div class="asset">🪙 Oro<small>WGC · Q2 2026</small></div><div class="track"><div class="fill" style="width:4.00%;background:var(--gold)"></div></div><div class="value"><b style="color:var(--gold)">4.00%</b><small>≈US$29T</small></div></div>
+    <div class="row btc-row"><div class="asset">₿ Bitcoin<small>CoinGecko · 12 sep 2026</small></div><div class="track btc-track"><div class="fill" style="width:.214%;background:var(--btc)"></div><div class="btc-dot" style="left:max(.214%,3px)"></div></div><div class="value"><b style="color:var(--btc)">0.21%</b><small>≈US$1.55T</small></div></div>
+  </div>
+  <div class="compare">
+    <div class="compare-card gold"><span>Oro</span><strong>≈US$29T</strong><p>El World Gold Council estima el valor de todo el oro existente sobre la superficie en alrededor de US$29T al cierre de Q2 2026.<a class="source-ref" href="#src6">6</a></p></div>
+    <div class="compare-mid">≈18.7×</div>
+    <div class="compare-card btc"><span>Bitcoin</span><strong>≈US$1.55T</strong><p>La capitalización de Bitcoin ronda US$1.55T al 12 de septiembre de 2026.<a class="source-ref" href="#src11">11</a> El cociente muestra diferencia de escala, no probabilidad de convergencia.</p></div>
+  </div>
+  <div class="precision"><strong>Un escenario mental, no un objetivo de precio:</strong> si algún día Bitcoin tuviera la misma capitalización que hoy tiene el oro, su valor de mercado tendría que ser aproximadamente 18.7 veces mayor que el actual, manteniendo constantes las demás cifras. Esa aritmética no dice que vaya a ocurrir, cuándo ocurriría ni qué pasaría con el precio del oro en el proceso.</div>
+</section>
+
+<section class="final paper reveal">
+  <div class="kicker">Ahora vuelve al principio</div>
+  <h2>El dinero cambió de forma. La pregunta nunca desapareció.</h2>
+  <p class="lede">Metal, moneda, papel, depósitos bancarios y activos digitales resuelven el mismo problema de maneras distintas: permitir que personas que no se conocen intercambien valor usando una referencia común. Lo que cambia es <strong>dónde depositamos la confianza, cómo se crea la oferta y quién puede modificar las reglas.</strong></p>
+  <div class="final-question">La próxima vez que mires el saldo de tu cuenta, pregúntate: <em>¿qué estoy poseyendo exactamente —y por qué confío en que otro lo aceptará?</em></div>
+</section>
+
+<details class="sources paper">
+  <summary>Fuentes y metodología</summary>
+  <p><strong>Criterio:</strong> las afirmaciones históricas y los datos cuantitativos clave están vinculados a fuentes primarias o institucionales. La narrativa simplifica algunos episodios para hacerlos comprensibles sin convertir la pieza en una clase de historia.</p>
+  <ol>
+    <li id="src1"><a href="https://www.imf.org/en/publications/fandd/issues/series/back-to-basics/money" target="_blank" rel="noopener">FMI — Money: At the Center of Transactions</a>. Funciones del dinero y el problema del trueque.</li>
+    <li id="src2"><a href="https://www.imf.org/external/np/exr/center/esl/events/ancientr.htm" target="_blank" rel="noopener">FMI — Colección de una antigua ruta comercial</a>. Uso monetario de metales preciosos y monedas selladas en redes comerciales antiguas.</li>
+    <li id="src3"><a href="https://www.bankofengland.co.uk/explainers/how-has-money-changed-over-time" target="_blank" rel="noopener">Bank of England — How has money changed over time?</a>. Recibos de orfebres, primeros billetes y evolución del papel moneda.</li>
+    <li id="src4"><a href="https://www.federalreservehistory.org/essays/gold-convertibility-ends" target="_blank" rel="noopener">Federal Reserve History — Gold Convertibility Ends</a>. Bretton Woods y suspensión de la convertibilidad del dólar en oro en 1971.</li>
+    <li id="src5"><a href="https://www.bankofengland.co.uk/explainers/what-is-money" target="_blank" rel="noopener">Bank of England — What is money?</a>. Dinero mercancía, dinero fiat y funcionamiento del dinero moderno.</li>
+    <li id="src6"><a href="https://www.gold.org/goldhub/data/how-much-gold" target="_blank" rel="noopener">World Gold Council — How much gold has been mined?</a>. Q2 2026: ~222,600 toneladas sobre la superficie y ~US$29T.</li>
+    <li id="src7"><a href="https://impacts.savills.com/market-trends/how-much-is-global-real-estate-worth.html?s=2025" target="_blank" rel="noopener">Savills World Research — How much is global real estate worth?</a>. US$393.3T al cierre de 2024.</li>
+    <li id="src8"><a href="https://www.world-exchanges.org/news/articles/new-wfe-data-public-markets-post-strong-growth-2025-despite-geopolitical-instability" target="_blank" rel="noopener">World Federation of Exchanges — 2025 market statistics</a>. Capitalización bursátil global de US$151.94T.</li>
+    <li id="src9"><a href="https://www.bis.org/publications/qr-202509/international-finance-through-lens-bis-statistics-bond-markets-domestic-and-international" target="_blank" rel="noopener">Bank for International Settlements — Global debt securities</a>. Más de US$150T al cierre de 2024.</li>
+    <li id="src10"><a href="https://bitcoin.org/en/faq" target="_blank" rel="noopener">Bitcoin.org — FAQ</a>. Emisión decreciente, límite de oferta y funcionamiento básico de la red.</li>
+    <li id="src11"><a href="https://www.coingecko.com/en/charts" target="_blank" rel="noopener">CoinGecko — Crypto market cap charts</a>. Capitalización de Bitcoin usada en la comparación.</li>
+    <li id="src12"><a href="https://www.bankofengland.co.uk/quarterly-bulletin/2014/q1/money-in-the-modern-economy-an-introduction" target="_blank" rel="noopener">Bank of England — Money in the modern economy: an introduction</a>. Tipos de dinero moderno, depósitos bancarios y dinero del banco central.</li>
+    <li id="src13"><a href="https://www.bankofengland.co.uk/quarterly-bulletin/2014/q1/money-creation-in-the-modern-economy" target="_blank" rel="noopener">Bank of England — Money creation in the modern economy</a>. Creación de depósitos mediante crédito y límites a la creación de dinero bancario.</li>
+    <li id="src14"><a href="https://www.ecb.europa.eu/ecb-and-you/explainers/tell-me-more/html/what_is_money.en.html" target="_blank" rel="noopener">Banco Central Europeo — What is money?</a>. Dinero de banco central, dinero bancario y creación de depósitos en el sistema monetario moderno.</li>
+  </ol>
+  <div class="note"><strong>Metodología del gráfico:</strong> se suman cinco tamaños de mercado para crear una referencia visual. Bienes raíces, acciones, deuda, oro y Bitcoin no forman un balance homogéneo y las cifras provienen de fechas distintas. Por eso los porcentajes solo significan “participación dentro de esta selección”. No deben interpretarse como porcentaje de la riqueza global, patrimonio neto mundial ni cartera óptima. La comparación oro/Bitcoin es aritmética de capitalización y no constituye una previsión de precio.</div>
+</details>
 </div>
-
+</main>
 <script>
-const GENESIS = new Date('2009-01-03T00:00:00Z').getTime();
-const DAY_MS = 86400000;
-const today = new Date();
-// Horizonte fijo de la simulación: diciembre de 2077.
-// Sobrevivir al horizonte no implica que el saldo sea perpetuo.
-const HORIZON_DATE = new Date(2077, 11, 31);
-let FX = 20;
-// Precio de mercado actual (vivo). Si el fetch falla, se usa la banda inferior del power law
-// como respaldo (nunca el fair price puro) — ver getCurrentPriceUSD().
-let livePriceUSD = null;
-let spendUserEdited = false;
-let fxUserEdited = false;
-
-const el = id => document.getElementById(id);
-const fmtBTC = n => n.toLocaleString('en-US',{maximumFractionDigits:5});
-function fmtUSD(n){
-  if(n>=1e9) return '$'+(n/1e9).toFixed(2)+'B';
-  if(n>=1e6) return '$'+(n/1e6).toFixed(2)+'M';
-  if(n>=1e3) return '$'+Math.round(n).toLocaleString('en-US');
-  return '$'+n.toFixed(2);
-}
-function fmtMXN(n){
-  if(n>=1e9) return '$'+(n/1e9).toFixed(2)+'B MXN';
-  if(n>=1e6) return '$'+(n/1e6).toFixed(2)+'M MXN';
-  return '$'+Math.round(n).toLocaleString('en-US')+' MXN';
-}
-function pluralize(n,sing,plur){ return n===1 ? sing : plur; }
-// Lee un campo de texto que puede traer comas de miles ("20,200") y lo vuelve número.
-function numVal(id){
-  const value = Number.parseFloat((el(id).value||'').replace(/,/g,''));
-  return Number.isFinite(value) && value>0 ? value : 0;
-}
-function finiteVal(id,fallback=0){
-  const value = Number.parseFloat(el(id).value);
-  return Number.isFinite(value) ? value : fallback;
-}
-// Limpia texto libre a dígitos+un punto decimal como máximo.
-function cleanNumberString(raw){
-  let cleaned = (raw||'').replace(/[^\d.]/g,'');
-  const firstDot = cleaned.indexOf('.');
-  if(firstDot!==-1) cleaned = cleaned.slice(0,firstDot+1)+cleaned.slice(firstDot+1).replace(/\./g,'');
-  let [intPart,decPart] = cleaned.split('.');
-  intPart = (intPart||'').replace(/^0+(?=\d)/,'');
-  return {intPart, decPart};
-}
-// String -> string con comas de miles (uso puro, sin tocar el DOM).
-function formatMoneyString(raw){
-  const {intPart,decPart} = cleanNumberString(raw);
-  const withCommas = intPart.replace(/\B(?=(\d{3})+(?!\d))/g,',');
-  return withCommas + (decPart!==undefined ? '.'+decPart : '');
-}
-// Inserta comas mientras el usuario escribe, preservando la posición del cursor.
-function formatMoneyInput(input){
-  const cursorFromEnd = input.value.length - input.selectionStart;
-  const formatted = formatMoneyString(input.value);
-  input.value = formatted;
-  const pos = Math.max(0, formatted.length-cursorFromEnd);
-  input.setSelectionRange(pos,pos);
-}
-
-// ── ISR México (tarifa anual SAT 2026, en pesos de hoy, indexada a inflación) ──
-const ISRT=[{l:.01,h:10135.11,c:0,p:.0192},{l:10135.12,h:86022.11,c:194.59,p:.064},{l:86022.12,h:151176.19,c:5051.37,p:.1088},{l:151176.2,h:175735.66,c:12140.13,p:.16},{l:175735.67,h:210403.69,c:16069.64,p:.1792},{l:210403.7,h:424353.97,c:22282.14,p:.2136},{l:424353.98,h:668840.14,c:67981.92,p:.2352},{l:668840.15,h:1276925.98,c:125485.07,p:.3},{l:1276925.99,h:1702567.97,c:307910.81,p:.32},{l:1702567.98,h:5107703.92,c:444116.23,p:.34},{l:5107703.93,h:Infinity,c:1601862.46,p:.35}];
-function isrMXN(gross){
-  if(gross<=0) return 0;
-  const amount=Math.round((gross+Number.EPSILON)*100)/100;
-  for(let i=ISRT.length-1;i>=0;i--){
-    const r=ISRT[i];
-    if(amount>=r.l) return r.c+(amount-r.l)*r.p;
-  }
-  return 0;
-}
-function isrMarginalIndexed(grossNominal, otherIncomeTodayMXN, yearsFromToday, infl, taxableShare){
-  const factor = Math.pow(1+infl, Math.max(0,yearsFromToday));
-  const grossReal = grossNominal*taxableShare/factor;
-  const taxReal = Math.max(0, isrMXN(otherIncomeTodayMXN+grossReal) - isrMXN(otherIncomeTodayMXN));
-  return taxReal*factor;
-}
-function grossForNet(net, otherIncomeTodayMXN, yearsFromToday, infl, taxableShare){
-  if(net<=0) return 0;
-  let lo=net, hi=net/0.6+1000;
-  for(let i=0;i<50;i++){
-    const mid=(lo+hi)/2;
-    if(mid-isrMarginalIndexed(mid,otherIncomeTodayMXN,yearsFromToday,infl,taxableShare) < net) lo=mid; else hi=mid;
-  }
-  return hi;
-}
-
-// ── Power law ────────────────────────────────────────────────────────────────
-function daysSinceGenesis(date){ return (date.getTime()-GENESIS)/DAY_MS; }
-function fairPriceUSD(date,A,n){ return A*Math.pow(daysSinceGenesis(date),n); }
-function lowerBandUSD(date,A,n,floorMult){ return fairPriceUSD(date,A,n)*floorMult; }
-// Precio "actual": el precio real de mercado (vivo). Si no se pudo obtener (falló el fetch),
-// se usa como respaldo la banda inferior del power law — NUNCA el fair price puro — para
-// mantener consistencia con el resto del modelo. Se usa para valorar el BTC que ya se
-// tiene hoy y para las ventas del resto del año calendario en curso.
-function getCurrentPriceUSD(A,n,floorMult){
-  return Number.isFinite(livePriceUSD) && livePriceUSD>0 ? livePriceUSD : lowerBandUSD(today,A,n,floorMult);
-}
-// Suma N meses sin el bug clásico de JS (ej. 31 ene + 1 mes NO debe saltar a marzo).
-// Fija el día en 1 antes de sumar, luego recorta al último día válido del mes resultante.
-function addMonths(date,months){
-  const d = new Date(date);
-  const day = d.getDate();
-  d.setDate(1);
-  d.setMonth(d.getMonth()+months);
-  const daysInResultMonth = new Date(d.getFullYear(), d.getMonth()+1, 0).getDate();
-  d.setDate(Math.min(day, daysInResultMonth));
-  return d;
-}
-const MONTH_NAMES=['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
-
-// Meses entre hoy y el horizonte (dic 2077). Aproximado a nivel de mes, igual que el resto del modelo.
-function monthsToHorizon(){
-  const months = (HORIZON_DATE.getFullYear()-today.getFullYear())*12 + (HORIZON_DATE.getMonth()-today.getMonth());
-  return Math.max(months,1);
-}
-
-// Simula desde hoy con btc0 ya en mano (sin comprar más) y un colchón de efectivo (cashReserveMXN,
-// en pesos de hoy, sin rendimiento). Cada mes, el retiro neto necesario (que crece con inflación) se
-// cubre PRIMERO con el efectivo disponible; solo cuando el efectivo se agota se empieza a vender BTC.
-// El efectivo retirado no genera ISR (no es una venta); la venta de BTC sí.
-//
-// Precio de venta: mientras el mes cae dentro del año calendario en curso, se usa el precio de
-// mercado actual (plano, sin variar). A partir del siguiente año calendario, cada año completo se
-// valora a un precio también plano, fijado el 1° de enero de ese año en la banda inferior del power
-// law — así el precio nunca "salta" a mitad de un mismo tramo anual.
-//
-// Cada tramo (año) también reporta cuántos de sus meses fueron cubiertos con efectivo
-// (monthsCashFunded) y cuántos con venta de BTC (monthsBTCFunded), para poder marcar en la UI
-// el punto exacto donde se agota el efectivo y arranca la venta de BTC.
-//
-// Devuelve en qué mes exacto (desde hoy) se agotan efectivo Y BTC a la vez, o null si no se agota
-// dentro del horizonte.
-function simulate(btc0, cashReserveMXN, netAnnualTodayMXN, infl, totalMonths, A, n, floorMult, feePct, otherIncomeTodayMXN, taxableShare, currentPriceUSD){
-  let btc=btc0, cash=cashReserveMXN;
-  let rows=[], depletedAtMonth=null, monthCount=0;
-  let cursor = new Date(today);
-  const currentYear = today.getFullYear();
-  const EPS=1e-10;
-
-  rows.push({year:currentYear, priceUSD:currentPriceUSD, gross:0, isr:0, net:0, btcSold:0, btcRemaining:btc0, cashRemaining:cash, portfolioMXN:currentPriceUSD*FX*btc0+cash, depleted:false, monthsCashFunded:null, monthsBTCFunded:null, monthsElapsed:null, firstBTCMonth:null});
-
-  // Construir los tramos: resto del año en curso (precio actual, plano) + años calendario
-  // completos (precio de la banda inferior a 1° de enero de cada año, plano) hasta el horizonte.
-  const chunks = [];
-  let monthsRemaining = totalMonths;
-  const monthsLeftThisYear = 12 - (today.getMonth()+1);
-  if(monthsLeftThisYear>0){
-    const m = Math.min(monthsLeftThisYear, monthsRemaining);
-    chunks.push({year:currentYear, months:m, isCurrentYear:true});
-    monthsRemaining -= m;
-  }
-  let y = currentYear+1;
-  while(monthsRemaining>0){
-    const m = Math.min(12, monthsRemaining);
-    chunks.push({year:y, months:m, isCurrentYear:false});
-    monthsRemaining -= m;
-    y++;
-  }
-
-  for(let ci=0; ci<chunks.length; ci++){
-    const chunk = chunks[ci];
-    const yearsFromToday = (cursor.getTime()-today.getTime())/(365.25*DAY_MS);
-    // Inflación aplicada sobre años reales transcurridos (continuo), no sobre el número de
-    // tramo: el primer tramo (resto del año en curso) puede durar menos de 12 meses, así que
-    // escalar por "tramo" adelantaría la inflación de todos los años siguientes.
-    const netTargetAnnual = netAnnualTodayMXN*Math.pow(1+infl, Math.max(0,yearsFromToday));
-    const netTargetMonthly = netTargetAnnual/12;
-    const chunkPriceUSD = chunk.isCurrentYear ? currentPriceUSD : lowerBandUSD(new Date(chunk.year,0,1),A,n,floorMult);
-    const chunkPriceMXN = chunkPriceUSD*FX;
-
-    // Se calcula mes a mes. El bruto acumulado requerido se vuelve a resolver con la tarifa
-    // anual, de modo que una transición parcial de efectivo a BTC no regale ni quite un mes.
-    let depletedThisChunk=false, btcSoldChunk=0, mxnSoldChunk=0, cashUsedThisChunk=0;
-    let monthsCashFunded=0, monthsBTCFunded=0, monthsElapsed=0, firstBTCMonth=null;
-    let cumulativeNetFromBTC=0, requiredGrossAllocated=0;
-    for(let k=0;k<chunk.months;k++){
-      cursor = addMonths(cursor,1);
-      monthCount++;
-      monthsElapsed=k+1;
-
-      const cashThisMonth=Math.min(cash,netTargetMonthly);
-      if(cashThisMonth>EPS){ cash-=cashThisMonth; cashUsedThisChunk+=cashThisMonth; monthsCashFunded++; }
-      const netFromBTCThisMonth=netTargetMonthly-cashThisMonth;
-      if(netFromBTCThisMonth<=EPS) continue;
-
-      cumulativeNetFromBTC+=netFromBTCThisMonth;
-      const requiredGrossCumulative=grossForNet(cumulativeNetFromBTC,otherIncomeTodayMXN,yearsFromToday,infl,taxableShare);
-      const grossThisMonth=Math.max(0,requiredGrossCumulative-requiredGrossAllocated);
-      requiredGrossAllocated=requiredGrossCumulative;
-      if(firstBTCMonth===null) firstBTCMonth=k+1;
-
-      if(btc<=EPS){ depletedThisChunk=true; if(depletedAtMonth===null) depletedAtMonth=monthCount; break; }
-      const btcSoldMonthRaw = grossThisMonth/(chunkPriceMXN*(1-feePct));
-      let btcSoldMonth = btcSoldMonthRaw;
-      if(btcSoldMonth>=btc-EPS){ btcSoldMonth=btc; depletedThisChunk=true; if(depletedAtMonth===null) depletedAtMonth=monthCount; }
-      btc = Math.max(btc-btcSoldMonth,0);
-      const receivedMXN = btcSoldMonth*chunkPriceMXN*(1-feePct);
-      btcSoldChunk+=btcSoldMonth; mxnSoldChunk+=receivedMXN;
-      if(btcSoldMonth>EPS) monthsBTCFunded++;
-      if(depletedThisChunk) break;
-    }
-
-    const isrV = isrMarginalIndexed(mxnSoldChunk, otherIncomeTodayMXN, yearsFromToday, infl, taxableShare);
-    const netFromBTC = mxnSoldChunk-isrV;
-    const netTotalThisChunk = cashUsedThisChunk+netFromBTC;
-
-    rows.push({year:chunk.year, priceUSD:chunkPriceUSD, gross:mxnSoldChunk, isr:isrV, net:netTotalThisChunk, btcSold:btcSoldChunk, btcRemaining:btc, cashRemaining:cash, portfolioMXN:btc*chunkPriceMXN+cash, depleted:depletedThisChunk, monthsCashFunded, monthsBTCFunded, monthsElapsed, firstBTCMonth, isCurrentYearChunk:chunk.isCurrentYear});
-    if(depletedThisChunk) break;
-  }
-
-  return {rows, depletedAtMonth};
-}
-
-// Máximo gasto mensual sostenible (nunca se agota dentro del horizonte a 2077) para btc0, el
-// colchón de efectivo y los ajustes actuales. Búsqueda binaria: expande el techo hasta encontrar
-// un valor que sí se agote, luego acota.
-function findBreakeven(btc0, cashReserveMXN, infl, A, n, floorMult, feePct, otherIncomeTodayMXN, taxableShare, currentPriceUSD, totalMonths){
-  if(btc0<=0 && cashReserveMXN<=0) return 0;
-  let lo=0, hi=1000, guard=0;
-  while(simulate(btc0, cashReserveMXN, hi*12, infl, totalMonths, A, n, floorMult, feePct, otherIncomeTodayMXN, taxableShare, currentPriceUSD).depletedAtMonth===null){
-    hi*=2; guard++;
-    if(guard>30) break;
-  }
-  for(let i=0;i<28;i++){
-    const mid=(lo+hi)/2;
-    const r = simulate(btc0, cashReserveMXN, mid*12, infl, totalMonths, A, n, floorMult, feePct, otherIncomeTodayMXN, taxableShare, currentPriceUSD);
-    if(r.depletedAtMonth===null) lo=mid; else hi=mid;
-  }
-  return lo;
-}
-
-// Etiqueta legible de qué financió el retiro ese año: solo efectivo, solo BTC, o la
-// transición exacta entre ambos (ej. "Efectivo 4m → BTC 8m").
-function fundingInfo(r){
-  if(r.monthsCashFunded==null) return {value:'', isTransition:false};
-  const cm=r.monthsCashFunded, bm=r.monthsBTCFunded;
-  if(cm>0 && bm===0) return {value:'Otros activos', isTransition:false};
-  if(cm===0 && bm>0) return {value:'Venta de bitcoin', isTransition:false};
-  if(cm>0 && bm>0) return {value:'Otros activos + BTC', isTransition:true};
-  return {value:'', isTransition:false};
-}
-
-function fmtCardMXN(value){
-  return fmtMXN(value).replace(/ MXN$/, ' <span class="currency-unit">MXN</span>');
-}
-
-function renderYearCards(rows, showCash){
-  return rows.map((r,i)=>{
-    if(i===0) return ''; // Omitir la foto inicial del patrimonio en la proyección.
-
-    const label = i===0 ? 'Hoy' : String(r.year);
-    const period = i===0 ? 'Patrimonio inicial' : `${r.monthsElapsed} ${pluralize(r.monthsElapsed,'mes','meses')}`;
-    const netMo = r.net/(r.monthsElapsed || 12);
-    const funding = showCash ? fundingInfo(r) : {value:'',isTransition:false};
-    const flag = r.depleted ? '<span class="yc-flag">Saldo agotado</span>' : '';
-    return `
-      <div class="year-card ${r.depleted?'depleted':''} ${funding.isTransition&&!r.depleted?'transition':''}">
-        <div class="yc-head"><span class="yc-left"><span class="yc-year">${label}</span><span class="yc-cal">${period}</span></span>${flag}</div>
-        <div class="yc-grid">
-          ${i>0?`<div class="yc-item yc-primary"><span class="k">Gasto mensual</span><span class="v">${fmtCardMXN(netMo)}</span></div>`:''}
-          <div class="yc-item yc-primary"><span class="k">Saldo total</span><span class="v">${fmtCardMXN(r.portfolioMXN)}</span></div>
-          <div class="yc-item"><span class="k">Bitcoin</span><span class="v">${fmtBTC(r.btcRemaining)} BTC</span></div>
-          ${showCash?`<div class="yc-item"><span class="k">Otros activos</span><span class="v">${fmtCardMXN(r.cashRemaining)}</span></div>`:''}
-        </div>
-        <div class="yc-foot"><span>1 BTC · ${fmtUSD(r.priceUSD)} USD</span>${funding.value?`<span>${funding.value}</span>`:''}</div>
-      </div>`;
-  }).join('');
-}
-
-function renderRunway(btc0, cashReserveMXN, monthlySpendMXN, infl, A, n, floorMult, feePct, otherIncomeTodayMXN, taxableShare, currentPriceUSD, totalMonths){
-  const out = el('result'), grpY=el('grp_y'), grpM=el('grp_m');
-  if((btc0<=0 && cashReserveMXN<=0) || monthlySpendMXN<=0){
-    out.classList.add('empty');
-    grpY.classList.remove('zero'); grpM.classList.add('zero');
-    el('out_y').textContent='—'; el('out_y_u').textContent='';
-    el('out_until').textContent = (btc0<=0 && cashReserveMXN<=0) ? 'Introduce el patrimonio disponible.' : 'Introduce el gasto mensual.';
-    el('detailToggle').hidden=true;
-    el('detailBody').replaceChildren();
-    return;
-  }
-  out.classList.remove('empty');
-  const netAnnualTodayMXN = monthlySpendMXN*12;
-  const sim = simulate(btc0, cashReserveMXN, netAnnualTodayMXN, infl, totalMonths, A, n, floorMult, feePct, otherIncomeTodayMXN, taxableShare, currentPriceUSD);
-
-  if(sim.depletedAtMonth===null){
-    const yrs=Math.floor(totalMonths/12), mos=totalMonths%12;
-    grpY.classList.remove('zero'); grpM.classList.toggle('zero',mos===0);
-    el('out_y').textContent='≥'+yrs; el('out_y_u').textContent=pluralize(yrs,'año','años');
-    el('out_m').textContent=mos; el('out_m_u').textContent=pluralize(mos,'mes','meses');
-    el('out_until').textContent='Con estos supuestos, llegan a diciembre de '+HORIZON_DATE.getFullYear();
-  }else{
-    const yrs=Math.floor(sim.depletedAtMonth/12), mos=sim.depletedAtMonth%12;
-    grpY.classList.toggle('zero', yrs===0);
-    grpM.classList.toggle('zero', mos===0 && yrs>0);
-    el('out_y').textContent=yrs; el('out_y_u').textContent=pluralize(yrs,'año','años');
-    el('out_m').textContent=mos; el('out_m_u').textContent=pluralize(mos,'mes','meses');
-    const untilDate=addMonths(today, sim.depletedAtMonth);
-    el('out_until').textContent='Agotamiento estimado en '+MONTH_NAMES[untilDate.getMonth()].slice(0,3)+'. '+untilDate.getFullYear();
-  }
-
-  el('detailToggle').hidden=false;
-  el('detailBody').innerHTML = renderYearCards(sim.rows, cashReserveMXN>0);
-}
-
-function compute(){
-  const btcHeld = Math.max(0,finiteVal('i_btc',0));
-  const lumpMXN = numVal('i_lump');
-  FX = Math.max(1,finiteVal('i_fx',20));
-  const infl = Math.max(0,finiteVal('i_infl',4))/100;
-  const n = finiteVal('i_n',5.82);
-  const A = finiteVal('i_a',1.0117)*1e-17;
-  const floorMult = Math.max(0,finiteVal('i_floor',0.42));
-  const feePct = Math.min(0.99,Math.max(0,finiteVal('i_fee',0)/100));
-  const otherIncomeTodayMXN = numVal('i_other_income');
-  const taxableShare = Math.min(1,Math.max(0,finiteVal('i_taxable',100)/100));
-
-  el('v_infl').textContent=(infl*100).toFixed(1)+'%';
-  el('v_fee').textContent=(feePct*100).toFixed(1)+'%';
-  el('v_taxable').textContent=Math.round(taxableShare*100)+'%';
-  el('v_n').textContent=n.toFixed(2);
-  el('v_a').textContent=(A*1e17).toFixed(4);
-  el('v_floor').textContent=floorMult.toFixed(2);
-
-  const currentPriceUSD = getCurrentPriceUSD(A,n,floorMult);
-  const btc0 = btcHeld;
-  // El efectivo extra NO se convierte a BTC: es un colchón que cubre el gasto mensual antes
-  // de empezar a vender BTC (ver simulate()).
-  const cashReserveMXN = lumpMXN;
-  const totalMonths = monthsToHorizon();
-
-  // Mientras el usuario no haya escrito su propio gasto, el campo muestra el máximo sostenible
-  // hasta el horizonte — se recalcula con cada cambio, no solo al cargar.
-  if(!spendUserEdited){
-    const breakeven = findBreakeven(btc0, cashReserveMXN, infl, A, n, floorMult, feePct, otherIncomeTodayMXN, taxableShare, currentPriceUSD, totalMonths);
-    el('i_spend').value = formatMoneyString(String(Math.floor(breakeven/100)*100));
-  }
-  const monthlySpendMXN = numVal('i_spend');
-  el('spend_hint').textContent = spendUserEdited ? 'Gasto personalizado' : 'Gasto calculado hasta 2077';
-
-  renderRunway(btc0, cashReserveMXN, monthlySpendMXN, infl, A, n, floorMult, feePct, otherIncomeTodayMXN, taxableShare, currentPriceUSD, totalMonths);
-}
-
-el('spend_auto').addEventListener('click',()=>{spendUserEdited=false;compute();});
-
-['i_lump','i_other_income'].forEach(id=>{
-  el(id).addEventListener('input', ()=>{ formatMoneyInput(el(id)); compute(); });
-});
-el('i_spend').addEventListener('input', ()=>{ spendUserEdited=true; formatMoneyInput(el('i_spend')); compute(); });
-['i_btc','i_infl','i_fee','i_taxable','i_n','i_a','i_floor'].forEach(id=>{
-  el(id).addEventListener('input', compute);
-});
-el('i_fx').addEventListener('input', ()=>{ fxUserEdited=true; compute(); });
-
-(async()=>{
-  const controller = new AbortController();
-  const timeoutId = setTimeout(()=>controller.abort(),6000);
-  try{
-    const r = await fetch('https://api.coinbase.com/v2/exchange-rates?currency=BTC',{signal:controller.signal});
-    if(!r.ok) throw new Error('Cotización no disponible');
-    const d = await r.json();
-    const usd = parseFloat(d.data.rates.USD), mxn = parseFloat(d.data.rates.MXN);
-    if(!Number.isFinite(usd) || usd<=0 || !Number.isFinite(mxn) || mxn<=0) throw new Error('Cotización inválida');
-    const fx = mxn/usd;
-    livePriceUSD = usd;
-    if(!fxUserEdited) el('i_fx').value = fx.toFixed(2);
-    el('live_price').innerHTML = `BTC <b>${fmtUSD(usd)}</b> · ${finiteVal('i_fx',fx).toFixed(2)} MXN/USD`;
-    compute();
-  }catch(e){
-    const estimate=getCurrentPriceUSD(finiteVal('i_a',1.0117)*1e-17,finiteVal('i_n',5.82),finiteVal('i_floor',0.42));
-    el('live_price').textContent = `BTC estimado ${fmtUSD(estimate)} · tipo de cambio manual`;
-  }finally{
-    clearTimeout(timeoutId);
-  }
-})();
-
-compute();
+const progress=document.getElementById('progress');
+function updateProgress(){const root=document.documentElement;const max=root.scrollHeight-root.clientHeight;progress.style.width=(max?window.scrollY/max*100:0)+'%'}
+window.addEventListener('scroll',updateProgress,{passive:true});updateProgress();
+const observer=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target)}})},{threshold:.08});
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
 </script>
 </body>
 </html>
